@@ -496,6 +496,68 @@ public class CommandPacketHandler implements PacketType {
     	
     	switch(cmd[0]) {
     	
+    	case "getid":
+    		   try {
+                  String itemName = ""+cmd[1]+" "+cmd[2];
+                  player.write(new SendMessagePacket("Searching for items containing '" + itemName + "' in " + ItemDefinition.DEFINITIONS.length + " indexes..."));  
+                  String[] items = new String[101];
+                  int[] idsChecked = new int[101];
+                  for (int x = 0; x < items.length; x++) {
+                      for (int i = ItemDefinition.DEFINITIONS.length - 1; i > 0; i--) {
+                          ItemDefinition def = ItemDefinition.forId(i);
+                          if (def == null) {
+                              continue;
+                          }
+                          boolean cont = false;
+                          for (int i2 = 0; i2 < idsChecked.length; i2++) {
+                              if (idsChecked[i2] == -1) {
+                                  continue;
+                              }
+                              if (idsChecked[i2] == def.getId()) {
+                                  cont = true;
+                              }
+                          }
+                          if (cont) {
+                              continue;
+                          }
+                          if (def.getName().contains(itemName.toLowerCase()) || def.getName().toLowerCase().startsWith(itemName)) {
+                              items[x] = "Item " + x + ": " + def.getName() + " - ID: " + def.getId() + "";
+                              idsChecked[x] = def.getId();
+                              continue;
+                          }
+                      }
+                  }
+                  for (int i = 8147; i <= 8195; i++) {
+                      player.getActionSender().sendString("", i);
+                  }
+                  for (int i = 12174; i <= 12223; i++) {
+                      player.getActionSender().sendString("", i);
+                  }
+                  player.getActionSender().sendString("@dre@Item Search - '" + itemName + "'", 8144);
+                  int startFrame = 8147;
+                  for (int i = 0; i < items.length; i++) {
+                      if (items[i] == null) {
+                          continue;
+                      }
+                      if ((i + startFrame) == 8196) {
+                          startFrame = 12174;
+                      }
+                      player.getActionSender().sendString(items[i], (startFrame + i - (startFrame == 12174 ? 49 : 0)));
+                  }
+                  int count = 0;
+                  for (int i = 0; i < items.length; i++) {
+                      if (items[i] != null) {
+                          count++;
+                      }
+                  }
+                  player.write(new SendMessagePacket("Showing " + (count - 1) + " results for prefix: '" + itemName + "'"));
+                  player.write(new SendInterfacePacket(8134));
+
+              } catch (Exception e) {
+                  e.printStackTrace();
+              }
+          
+                 return true;
     	case "pet":
 			int id = Integer.parseInt(cmd[1]);
 			Pet pet = new Pet(player, id);

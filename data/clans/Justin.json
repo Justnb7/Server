@@ -3,7 +3,13 @@
   "clan_owner": "Justin",
   "lootshare": false,
   "friends_list": [],
-  "online_members": [],
+  "online_members": [
+    {
+      "clan_owner": "Justin",
+      "player_name": "Justin",
+      "player_rank": "OWNER"
+    }
+  ],
   "registered_members": {
     "Justin": {
       "clan_owner": "Justin",
