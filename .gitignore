@@ -4,7 +4,10 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-
+/lib
+/bin
+/data/map
+/data/characters
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 

@@ -1,0 +1,1974 @@
+[
+  {
+    "name": "Barrows Shop",
+    "items": [
+	{
+        "id": 4708,
+        "amount": 1000
+      },
+      {
+        "id": 4710,
+        "amount": 1000
+      },
+      {
+        "id": 4712,
+        "amount": 1000
+      },
+      {
+        "id": 4714,
+        "amount": 1000
+      },
+      {
+        "id": 4716,
+        "amount": 1000
+      },
+      {
+        "id": 4718,
+        "amount": 1000
+      },
+      {
+        "id": 4720,
+        "amount": 1000
+      },
+      {
+        "id": 4722,
+        "amount": 1000
+      },
+      {
+        "id": 4724,
+        "amount": 1000
+      },
+      {
+        "id": 4726,
+        "amount": 1000
+      },
+      {
+        "id": 4728,
+        "amount": 1000
+      },
+      {
+        "id": 4730,
+        "amount": 1000
+      },
+      {
+        "id": 4732,
+        "amount": 1000
+      },
+      {
+        "id": 4734,
+        "amount": 1000
+      },
+      {
+        "id": 4736,
+        "amount": 1000
+      },
+      {
+        "id": 4738,
+        "amount": 1000
+      },
+      {
+        "id": 4740,
+        "amount": 1000000
+      },
+      {
+        "id": 4745,
+        "amount": 1000
+      },
+      {
+        "id": 4747,
+        "amount": 1000
+      },
+      {
+        "id": 4749,
+        "amount": 1000
+      },
+      {
+        "id": 4751,
+        "amount": 1000
+      },
+      {
+        "id": 4753,
+        "amount": 1000
+      },
+      {
+        "id": 4755,
+        "amount": 1000
+      },
+      {
+        "id": 4757,
+        "amount": 1000
+      },
+      {
+        "id": 4759,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "COINS"
+  },
+  {
+    "name": "Bounty Hunter Store",
+    "items": [
+      {
+        "id": 12855,
+        "amount": 1
+      },
+      {
+        "id": 12856,
+        "amount": 1
+      },
+      {
+        "id": 12804,
+        "amount": 1
+      },
+      {
+        "id": 12853,
+        "amount": 1
+      },
+      {
+        "id": 12526,
+        "amount": 1
+      },
+      {
+        "id": 12849,
+        "amount": 1
+      },
+      {
+        "id": 12757,
+        "amount": 1
+      },
+      {
+        "id": 12759,
+        "amount": 1
+      },
+      {
+        "id": 12761,
+        "amount": 1
+      },
+      {
+        "id": 12763,
+        "amount": 1
+      },
+	  {
+        "id": 12771,
+        "amount": 1
+      },
+      {
+        "id": 12457,
+        "amount": 1
+      },
+      {
+        "id": 12458,
+        "amount": 1
+      },
+      {
+        "id": 12459,
+        "amount": 1
+      },
+      {
+        "id": 12419,
+        "amount": 1
+      },
+      {
+        "id": 12420,
+        "amount": 1
+      },
+      {
+        "id": 12421,
+        "amount": 1
+      },
+      {
+        "id": 12798,
+        "amount": 1
+      },
+      {
+        "id": 12800,
+        "amount": 1
+      },
+      {
+        "id": 12802,
+        "amount": 1
+      },
+      {
+        "id": 12846,
+        "amount": 1
+      },
+      {
+        "id": 12786,
+        "amount": 100
+      },
+      {
+        "id": 12783,
+        "amount": 100
+      },
+      {
+        "id": 12775,
+        "amount": 100
+      },
+      {
+        "id": 12776,
+        "amount": 100
+      },
+      {
+        "id": 12777,
+        "amount": 100
+      },
+      {
+        "id": 12778,
+        "amount": 100
+      },
+      {
+        "id": 12779,
+        "amount": 100
+      },
+      {
+        "id": 12780,
+        "amount": 100
+      },
+      {
+        "id": 12781,
+        "amount": 100
+      },
+      {
+        "id": 12782,
+        "amount": 100
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "BOUNTIES"
+  },
+  {
+    "name": "Food && Potions Shop",
+    "items": [
+	{
+        "id": 362,
+        "amount": 100000
+      },
+      {
+        "id": 380,
+        "amount": 100000
+      },
+      {
+        "id": 374,
+        "amount": 100000
+      },
+      {
+        "id": 7947,
+        "amount": 100000
+      },
+      {
+        "id": 386,
+        "amount": 100000
+      },
+      {
+        "id": 392,
+        "amount": 100000
+      },
+      {
+        "id": 7061,
+        "amount": 100000
+      },
+      {
+        "id": 11937,
+        "amount": 100000
+      },
+      {
+        "id": 13441,
+        "amount": 1000
+      },
+      {
+        "id": 3145,
+        "amount": 100000
+      },
+	  {
+        "id": 2441,
+        "amount": 100000
+      },
+      {
+        "id": 2443,
+        "amount": 100000
+      },
+      {
+        "id": 2437,
+        "amount": 100000
+      },
+      {
+        "id": 2445,
+        "amount": 100000
+      },
+      {
+        "id": 2435,
+        "amount": 100000
+      },
+      {
+        "id": 2447,
+        "amount": 100000
+      },
+      {
+        "id": 2449,
+        "amount": 100000
+      },
+      {
+        "id": 2451,
+        "amount": 100000
+      },
+      {
+        "id": 2453,
+        "amount": 100000
+      },
+      {
+        "id": 6686,
+        "amount": 100000
+      },
+      {
+        "id": 3025,
+        "amount": 100000
+      },
+      {
+        "id": 12696,
+        "amount": 100000
+      }
+      ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Armour Shop",
+    "items": [
+	  {
+        "id": 1153,
+        "amount": 1000
+      },
+      {
+        "id": 1115,
+        "amount": 1000
+      },
+      {
+        "id": 1067,
+        "amount": 1000
+      },
+      {
+        "id": 1191,
+        "amount": 1000
+      },
+      {
+        "id": 1157,
+        "amount": 1000
+      },
+      {
+        "id": 1119,
+        "amount": 1000
+      },
+      {
+        "id": 1069,
+        "amount": 1000
+      },
+      {
+        "id": 1193,
+        "amount": 1000
+      },
+      {
+        "id": 1165,
+        "amount": 1000
+      },
+      {
+        "id": 1125,
+        "amount": 1000
+      },
+      {
+        "id": 1077,
+        "amount": 1000
+      },
+      {
+        "id": 1195,
+        "amount": 1000
+      },
+      {
+        "id": 1159,
+        "amount": 1000
+      },
+      {
+        "id": 1121,
+        "amount": 1000
+      },
+      {
+        "id": 1071,
+        "amount": 1000
+      },
+      {
+        "id": 1197,
+        "amount": 1000
+      },
+      {
+        "id": 1161,
+        "amount": 1000
+      },
+      {
+        "id": 1123,
+        "amount": 1000
+      },
+      {
+        "id": 1073,
+        "amount": 1000
+      },
+      {
+        "id": 1199,
+        "amount": 1000
+      },
+      {
+        "id": 1163,
+        "amount": 1000
+      },
+      {
+        "id": 1127,
+        "amount": 1000
+      },
+      {
+        "id": 1079,
+        "amount": 1000
+      },
+      {
+        "id": 1201,
+        "amount": 1000
+      },
+      {
+        "id": 6128,
+        "amount": 1000
+      },
+      {
+        "id": 6129,
+        "amount": 1000
+      },
+      {
+        "id": 6130,
+        "amount": 1000
+      },
+      {
+        "id": 5574,
+        "amount": 1000
+      },
+      {
+        "id": 5575,
+        "amount": 1000
+      },
+      {
+        "id": 5576,
+        "amount": 1000
+      },
+      {
+        "id": 1540,
+        "amount": 1000
+      },
+      {
+        "id": 3122,
+        "amount": 1000
+      },
+      {
+        "id": 6151,
+        "amount": 1000
+      },
+      {
+        "id": 6145,
+        "amount": 1000
+      }
+      ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Magic Shop",
+    "items": [
+      {
+        "id": 1727,
+        "amount": 10000
+      },
+      {
+        "id": 4675,
+        "amount": 100000
+      },
+      {
+        "id": 1381,
+        "amount": 100000
+      },
+      {
+        "id": 1383,
+        "amount": 100000
+      },
+      {
+        "id": 1385,
+        "amount": 100000
+      },
+      {
+        "id": 1387,
+        "amount": 100000
+      },
+      {
+        "id": 6562,
+        "amount": 100000
+      },
+      {
+        "id": 2579,
+        "amount": 100000
+      },
+      {
+        "id": 2412,
+        "amount": 100000
+      },
+      {
+        "id": 2413,
+        "amount": 100000
+      },
+      {
+        "id": 2414,
+        "amount": 100000
+      },
+      {
+        "id": 3840,
+        "amount": 100000
+      },
+      {
+        "id": 3842,
+        "amount": 100000
+      },
+      {
+        "id": 3844,
+        "amount": 100000
+      },
+      {
+        "id": 9075,
+        "amount": 500000
+      },
+      {
+        "id": 554,
+        "amount": 500000
+      },
+      {
+        "id": 555,
+        "amount": 500000
+      },
+      {
+        "id": 556,
+        "amount": 500000
+      },
+      {
+        "id": 557,
+        "amount": 500000
+      },
+      {
+        "id": 558,
+        "amount": 500000
+      },
+      {
+        "id": 559,
+        "amount": 500000
+      },
+      {
+        "id": 560,
+        "amount": 500000
+      },
+      {
+        "id": 561,
+        "amount": 500000
+      },
+      {
+        "id": 562,
+        "amount": 500000
+      },
+      {
+        "id": 563,
+        "amount": 500000
+      },
+      {
+        "id": 564,
+        "amount": 500000
+      },
+      {
+        "id": 565,
+        "amount": 500000
+      },
+      {
+        "id": 566,
+        "amount": 500000
+      },
+      {
+        "id": 8007,
+        "amount": 100000
+      },
+      {
+        "id": 8008,
+        "amount": 100000
+      },
+      {
+        "id": 8009,
+        "amount": 1000
+      },
+      {
+        "id": 8010,
+        "amount": 1000
+      },
+      {
+        "id": 7400,
+        "amount": 1000
+      },
+      {
+        "id": 7399,
+        "amount": 1000
+      },
+      {
+        "id": 7398,
+        "amount": 1000
+      },
+      {
+        "id": 4089,
+        "amount": 1000
+      },
+      {
+        "id": 4091,
+        "amount": 1000
+      },
+      {
+        "id": 4093,
+        "amount": 1000
+      },
+      {
+        "id": 4095,
+        "amount": 1000
+      },
+      {
+        "id": 4097,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "COINS"
+  },
+  {
+    "name": "Range Shop",
+    "items": [
+	  {
+        "id": 841,
+        "amount": 10000
+      },
+      {
+        "id": 843,
+        "amount": 10000
+      },
+      {
+        "id": 849,
+        "amount": 10000
+      },
+      {
+        "id": 853,
+        "amount": 10000
+      },
+      {
+        "id": 861,
+        "amount": 10000
+      },
+      {
+        "id": 882,
+        "amount": 100000
+      },
+      {
+        "id": 884,
+        "amount": 100000
+      },
+      {
+        "id": 886,
+        "amount": 100000
+      },
+      {
+        "id": 888,
+        "amount": 100000
+      },
+      {
+        "id": 890,
+        "amount": 100000
+      },
+      {
+        "id": 892,
+        "amount": 100000
+      },
+      {
+        "id": 11212,
+        "amount": 100000
+      },
+      {
+        "id": 825,
+        "amount": 100000
+      },
+      {
+        "id": 826,
+        "amount": 100000
+      },
+      {
+        "id": 827,
+        "amount": 100000
+      },
+      {
+        "id": 828,
+        "amount": 100000
+      },
+      {
+        "id": 829,
+        "amount": 100000
+      },
+      {
+        "id": 830,
+        "amount": 100000
+      },
+      {
+        "id": 9185,
+        "amount": 10000
+      },
+      {
+        "id": 9144,
+        "amount": 100000
+      },
+      {
+        "id": 9242,
+        "amount": 100000
+      },
+       {
+        "id": 9243,
+        "amount": 100000
+      },
+      {
+        "id": 9244,
+        "amount": 100000
+      },
+      {
+        "id": 9245,
+        "amount": 100000
+      },
+      {
+        "id": 10498,
+        "amount": 10000
+      },
+      {
+        "id": 10499,
+        "amount": 10000
+      },
+      {
+        "id": 1135,
+        "amount": 10000
+      },
+      {
+        "id": 1099,
+        "amount": 10000
+      },
+      {
+        "id": 1065,
+        "amount": 10000
+      },
+      {
+        "id": 2499,
+        "amount": 10000
+      },
+      {
+        "id": 2493,
+        "amount": 10000
+      },
+      {
+        "id": 2487,
+        "amount": 10000
+      },
+      {
+        "id": 2501,
+        "amount": 10000
+      },
+      {
+        "id": 2495,
+        "amount": 10000
+      },
+      {
+        "id": 2489,
+        "amount": 10000
+      },
+      {
+        "id": 2503,
+        "amount": 10000
+      },
+      {
+        "id": 2497,
+        "amount": 10000
+      },
+      {
+        "id": 2491,
+        "amount": 10000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Weapons and Accessories",
+    "items": [
+      {
+        "id": 1305,
+        "amount": 100000
+      },
+      {
+        "id": 4587,
+        "amount": 100000
+      },
+      {
+        "id": 1434,
+        "amount": 100000
+      },
+      {
+        "id": 1215,
+        "amount": 100000
+      },
+      {
+        "id": 5698,
+        "amount": 100000
+      },
+      {
+        "id": 1377,
+        "amount": 100
+      },
+      {
+        "id": 1249,
+        "amount": 100
+      },
+      {
+        "id": 2550,
+        "amount": 100000
+      },
+      {
+        "id": 8845,
+        "amount": 100000
+      },
+      {
+        "id": 8846,
+        "amount": 100000
+      },
+      {
+        "id": 8847,
+        "amount": 100000
+      },
+      {
+        "id": 8848,
+        "amount": 100000
+      },
+      {
+        "id": 8849,
+        "amount": 100000
+      },
+      {
+        "id": 1333,
+        "amount": 100000
+      },
+      {
+        "id": 1319,
+        "amount": 100000
+      },
+      {
+        "id": 7458,
+        "amount": 100000
+      },
+      {
+        "id": 7459,
+        "amount": 100000
+      },
+      {
+        "id": 7460,
+        "amount": 100000
+      },
+      {
+        "id": 3751,
+        "amount": 100000
+      },
+      {
+        "id": 3753,
+        "amount": 100000
+      },
+      {
+        "id": 3755,
+        "amount": 100000
+      },
+      {
+        "id": 3749,
+        "amount": 100000
+      },
+      {
+        "id": 3105,
+        "amount": 100000
+      },
+      {
+        "id": 4131,
+        "amount": 100000
+      },
+      {
+        "id": 1725,
+        "amount": 100000
+      },
+      {
+        "id": 1712,
+        "amount": 100000
+      },
+      {
+        "id": 6585,
+        "amount": 100000
+      },
+      {
+        "id": 6528,
+        "amount": 100000
+      },
+      {
+        "id": 6527,
+        "amount": 100000
+      },
+      {
+        "id": 6523,
+        "amount": 100000
+      },
+      {
+        "id": 4151,
+        "amount": 100000
+      },
+      {
+        "id": 6568,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "COINS"
+  },
+  {
+    "name": "Low Level Shop",
+    "items": [
+	  {
+        "id": 884,
+        "amount": 10000
+      },
+      {
+        "id": 886,
+        "amount": 10000
+      },
+      {
+        "id": 888,
+        "amount": 10000
+      },
+      {
+        "id": 890,
+        "amount": 10000
+      },
+      {
+        "id": 1323,
+        "amount": 10000
+      },
+      {
+        "id": 1309,
+        "amount": 10000
+      },
+      {
+        "id": 1293,
+        "amount": 10000
+      },
+      {
+        "id": 1363,
+        "amount": 10000
+      },
+      {
+        "id": 1325,
+        "amount": 10000
+      },
+      {
+        "id": 1311,
+        "amount": 10000
+      },
+      {
+        "id": 1295,
+        "amount": 10000
+      },
+      {
+        "id": 1329,
+        "amount": 10000
+      },
+      {
+        "id": 1315,
+        "amount": 10000
+      },
+      {
+        "id": 1331,
+        "amount": 10000
+      },
+      {
+        "id": 1317,
+        "amount": 10000
+      },
+      {
+        "id": 841,
+        "amount": 10000
+      },
+      {
+        "id": 843,
+        "amount": 10000
+      },
+      {
+        "id": 849,
+        "amount": 10000
+      },
+      {
+        "id": 853,
+        "amount": 10000
+      },
+      {
+        "id": 857,
+        "amount": 10000
+      },
+      {
+        "id": 839,
+        "amount": 10000
+      },
+      {
+        "id": 845,
+        "amount": 10000
+      },
+      {
+        "id": 847,
+        "amount": 10000
+      },
+      {
+        "id": 851,
+        "amount": 10000
+      },
+      {
+        "id": 855,
+        "amount": 10000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Gear Point Store",
+    "items": [
+	{
+        "id": 1323,
+        "amount": 25
+      },
+      {
+        "id": 1712,
+        "amount": 35
+      },
+      {
+        "id": 2550,
+        "amount": 10
+      },
+      {
+        "id": 7458,
+        "amount": 30
+      },
+      {
+        "id": 7459,
+        "amount": 35
+      },
+      {
+        "id": 7460,
+        "amount": 40
+      },
+      {
+        "id": 1127,
+        "amount": 100
+      },
+      {
+        "id": 1163,
+        "amount": 40
+      },
+      {
+        "id": 1201,
+        "amount": 50
+      },
+      {
+        "id": 1079,
+        "amount": 100
+      },
+      {
+        "id": 4131,
+        "amount": 90
+      },
+      {
+        "id": 3105,
+        "amount": 50
+      },
+      {
+        "id": 1305,
+        "amount": 100
+      },
+      {
+        "id": 4587,
+        "amount": 100
+      },
+	  {
+        "id": 1434,
+        "amount": 100
+      },
+      {
+        "id": 1215,
+        "amount": 20
+      },
+      {
+        "id": 5698,
+        "amount": 25
+      },
+      {
+        "id": 861,
+        "amount": 5
+      },
+      {
+        "id": 9185,
+        "amount": 50
+      },
+      {
+        "id": 9243,
+        "amount": 10
+      },
+      {
+        "id": 2503,
+        "amount": 15
+      },
+      {
+        "id": 2497,
+        "amount": 10
+      },
+      {
+        "id": 2491,
+        "amount": 5
+      },
+      {
+        "id": 10499,
+        "amount": 25
+      },
+      {
+        "id": 4089,
+        "amount": 30
+      },
+      {
+        "id": 4091,
+        "amount": 50
+      },
+      {
+        "id": 4093,
+        "amount": 40
+      },
+      {
+        "id": 5574,
+        "amount": 25
+      },
+      {
+        "id": 5575,
+        "amount": 25
+      },
+      {
+        "id": 5576,
+        "amount": 25
+      },
+      {
+        "id": 3122,
+        "amount": 75
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "FREE_POINTS"
+  },
+  {
+    "name": "Team Cape Shop",
+    "items": [
+	  {
+        "id": 4315,
+        "amount": 100
+      },
+      {
+        "id": 4317,
+        "amount": 100
+      },
+      {
+        "id": 4319,
+        "amount": 100
+      },
+      {
+        "id": 4321,
+        "amount": 100
+      },
+      {
+        "id": 4323,
+        "amount": 100
+      },
+      {
+        "id": 4325,
+        "amount": 100
+      },
+      {
+        "id": 4327,
+        "amount": 100
+      },
+      {
+        "id": 4329,
+        "amount": 100
+      },
+      {
+        "id": 4331,
+        "amount": 100
+      },
+      {
+        "id": 4333,
+        "amount": 100
+      },
+      {
+        "id": 4335,
+        "amount": 100
+      },
+      {
+        "id": 4337,
+        "amount": 100
+      },
+      {
+        "id": 4339,
+        "amount": 100
+      },
+      {
+        "id": 4341,
+        "amount": 100
+      },
+      {
+        "id": 4343,
+        "amount": 100
+      },
+      {
+        "id": 4345,
+        "amount": 100
+      },
+      {
+        "id": 4347,
+        "amount": 100
+      },
+      {
+        "id": 4349,
+        "amount": 100
+      },
+      {
+        "id": 4351,
+        "amount": 100
+      },
+      {
+        "id": 4353,
+        "amount": 100
+      },
+      {
+        "id": 4355,
+        "amount": 100
+      },
+      {
+        "id": 4357,
+        "amount": 100
+      },
+      {
+        "id": 4359,
+        "amount": 100
+      },
+      {
+        "id": 4361,
+        "amount": 100
+      },
+      {
+        "id": 4363,
+        "amount": 100
+      },
+      {
+        "id": 4365,
+        "amount": 100
+      },
+      {
+        "id": 4367,
+        "amount": 100
+      },
+      {
+        "id": 4369,
+        "amount": 100
+      },
+      {
+        "id": 4371,
+        "amount": 100
+      },
+      {
+        "id": 4373,
+        "amount": 100
+      },
+      {
+        "id": 4375,
+        "amount": 100
+      },
+      {
+        "id": 4377,
+        "amount": 100
+      },
+      {
+        "id": 4379,
+        "amount": 100
+      },
+      {
+        "id": 4381,
+        "amount": 100
+      },
+      {
+        "id": 4383,
+        "amount": 100
+      },
+      {
+        "id": 4385,
+        "amount": 100
+      },
+      {
+        "id": 4387,
+        "amount": 100
+      },
+      {
+        "id": 4389,
+        "amount": 100
+      },
+      {
+        "id": 4391,
+        "amount": 100
+      },
+      {
+        "id": 4393,
+        "amount": 100
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Costume Shop",
+    "items": [
+	  {
+        "id": 656,
+        "amount": 10000
+      },
+      {
+        "id": 658,
+        "amount": 10000
+      },
+      {
+        "id": 660,
+        "amount": 10000
+      },
+      {
+        "id": 662,
+        "amount": 10000
+      },
+      {
+        "id": 664,
+        "amount": 10000
+      },
+      {
+        "id": 8950,
+        "amount": 10000
+      },
+      {
+        "id": 7003,
+        "amount": 10000
+      },
+      {
+        "id": 6107,
+        "amount": 10000
+      },
+      {
+        "id": 6108,
+        "amount": 10000
+      },
+      {
+        "id": 6109,
+        "amount": 10000
+      },
+      {
+        "id": 7394,
+        "amount": 10000
+      },
+      {
+        "id": 7396,
+        "amount": 10000
+      },
+      {
+        "id": 6188,
+        "amount": 10000
+      },
+      {
+        "id": 544,
+        "amount": 10000
+      },
+      {
+        "id": 542,
+        "amount": 10000
+      },
+      {
+        "id": 11850,
+        "amount": 10000
+      },
+      {
+        "id": 11852,
+        "amount": 10000
+      },
+      {
+        "id": 11854,
+        "amount": 10000
+      },
+      {
+        "id": 11856,
+        "amount": 10000
+      },
+      {
+        "id": 11858,
+        "amount": 10000
+      },
+      {
+        "id": 11860,
+        "amount": 10000
+      },
+      {
+        "id": 11919,
+        "amount": 10000
+      },
+      {
+        "id": 11990,
+        "amount": 10000
+      },
+      {
+        "id": 12013,
+        "amount": 10000
+      },
+      {
+        "id": 12014,
+        "amount": 10000
+      },
+      {
+        "id": 12015,
+        "amount": 10000
+      },
+      {
+        "id": 12016,
+        "amount": 10000
+      },
+      {
+        "id": 12245,
+        "amount": 10000
+      },
+      {
+        "id": 12247,
+        "amount": 10000
+      },
+      {
+        "id": 12249,
+        "amount": 10000
+      },
+      {
+        "id": 12251,
+        "amount": 10000
+      },
+      {
+        "id": 12319,
+        "amount": 10000
+      },
+      {
+        "id": 12321,
+        "amount": 10000
+      },
+      {
+        "id": 12323,
+        "amount": 10000
+      },
+      {
+        "id": 12325,
+        "amount": 10000
+      },
+      {
+        "id": 12351,
+        "amount": 10000
+      },
+      {
+        "id": 12353,
+        "amount": 10000
+      },
+      {
+        "id": 12355,
+        "amount": 10000
+      },
+      {
+        "id": 12359,
+        "amount": 10000
+      },
+      {
+        "id": 12361,
+        "amount": 10000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Skilling Shop",
+    "items": [
+	  {
+        "id": 314,
+        "amount": 100000
+      },
+      {
+        "id": 946,
+        "amount": 100
+      },
+      {
+        "id": 590,
+        "amount": 100
+      },
+      {
+        "id": 1265,
+        "amount": 10000
+      },
+      {
+        "id": 1269,
+        "amount": 10000
+      },
+      {
+        "id": 1273,
+        "amount": 10000
+      },
+      {
+        "id": 1349,
+        "amount": 10000
+      },
+      {
+        "id": 1359,
+        "amount": 10000
+      },
+      {
+        "id": 1755,
+        "amount": 10000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+   {
+    "name": "Royalty Shop",
+    "items": [
+      {
+        "id": 11838,
+        "amount": 1000
+      },
+      {
+        "id": 12381,
+        "amount": 1000
+      },
+      {
+        "id": 12383,
+        "amount": 1000
+      },
+      {
+        "id": 12385,
+        "amount": 1000
+      },
+      {
+        "id": 12387,
+        "amount": 1000
+      },
+      {
+        "id": 12417,
+        "amount": 1000
+      },
+      {
+        "id": 12414,
+        "amount": 1000
+      },
+      {
+        "id": 12415,
+        "amount": 1000
+      },
+      {
+        "id": 12416,
+        "amount": 1000
+      },
+      {
+        "id": 12418,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  },
+  {
+    "name": "Vote Rewards Shop",
+    "items": [
+      {
+        "id": 4151,
+        "amount": 1
+      },
+      {
+        "id": 6585,
+        "amount": 1
+      },
+      {
+        "id": 2572,
+        "amount": 1
+      },
+      {
+        "id": 12357,
+        "amount": 1
+      },
+      {
+        "id": 12371,
+        "amount": 1
+      },
+      {
+        "id": 12373,
+        "amount": 1
+      },
+      {
+        "id": 12389,
+        "amount": 1
+      },
+      {
+        "id": 12391,
+        "amount": 1
+      },
+      {
+        "id": 6199,
+        "amount": 1
+      },
+      {
+        "id": 12887,
+        "amount": 1
+        },
+      {
+        "id": 12888,
+        "amount": 1
+      },
+      {
+        "id": 12889,
+        "amount": 1
+        },
+      {
+        "id": 12890,
+        "amount": 1
+        },
+      {
+        "id": 12891,
+        "amount": 1
+        },
+      {
+        "id":12892 ,
+        "amount": 1
+        },
+      {
+        "id": 12893,
+        "amount": 1
+        },
+      {
+        "id": 12894,
+        "amount": 1
+        },
+      {
+        "id": 12895,
+        "amount": 1
+        },
+      {
+        "id": 12896,
+        "amount": 1
+        }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "VOTE_POINTS"
+  },
+  {
+    "name": "Slayer Equipment",
+    "items": [
+      {
+        "id": 4155,
+        "amount": 50
+      },
+      {
+        "id": 4156,
+        "amount": 50
+      },
+      {
+        "id": 4158,
+        "amount": 50
+      },
+      {
+        "id": 4160,
+        "amount": 50000
+      },
+      {
+        "id": 4161,
+        "amount": 5000
+      },
+      {
+        "id": 4162,
+        "amount": 50
+      },
+      {
+        "id": 4164,
+        "amount": 50
+      },
+      {
+        "id": 4166,
+        "amount": 50
+      },
+      {
+        "id": 4170,
+        "amount": 50
+      },
+      {
+        "id": 4551,
+        "amount": 50
+      },
+      {
+        "id": 6696,
+        "amount": 5000
+      },
+      {
+        "id": 6708,
+        "amount": 5000
+      },
+      {
+        "id": 7053,
+        "amount": 50
+      },
+      {
+        "id": 7159,
+        "amount": 50
+      },
+      {
+        "id": 7421,
+        "amount": 50
+      },
+      {
+        "id": 7432,
+        "amount": 50
+      },
+      {
+        "id": 8923,
+        "amount": 50
+      },
+      {
+        "id": 10952,
+        "amount": 50
+      },
+      {
+        "id": 11874,
+        "amount": 3000
+      },
+      {
+        "id": 11885,
+        "amount": 800
+      },
+      {
+        "id": 11876,
+        "amount": 5000
+      },
+      {
+        "id": 11887,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "COINS"
+  },
+  {
+    "name": "Slayer Rewards",
+    "items": [
+     {
+        "id": 6798,
+        "amount": 1000
+      },
+      {
+        "id": 11864,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "SLAYER_POINTS"
+  },
+    {
+    "name": "Blood money rewards",
+    "items": [
+      {
+        "id": 19484,
+        "amount": 1000
+      },
+      {
+        "id": 12006,
+        "amount": 1000
+      },
+      {
+        "id": 3204,
+        "amount": 1000
+      },
+      {
+        "id": 4153,
+        "amount": 1000
+      },
+      {
+        "id": 13265,
+        "amount": 1000
+      },
+      {
+        "id": 13271,
+        "amount": 1000
+      },
+      {
+        "id": 13263,
+        "amount": 1000
+      },
+      {
+        "id": 6737,
+        "amount": 1000
+      },
+      {
+        "id": 6735,
+        "amount": 1000
+      },
+      {
+        "id": 12002,
+        "amount": 1000
+      },
+	  {
+        "id": 6914,
+        "amount": 1000
+      },
+	  {
+        "id": 6889,
+        "amount": 1000
+      },
+	  {
+        "id": 6731,
+        "amount": 1000
+      },
+	  {
+        "id": 6918,
+        "amount": 1000
+      },
+	  {
+        "id": 6916,
+        "amount": 1000
+      },
+	  {
+        "id": 6924,
+        "amount": 1000
+      },
+	  {
+        "id": 6920,
+        "amount": 1000
+      },
+	  {
+        "id": 6922,
+        "amount": 1000
+      },
+      {
+        "id": 11235,
+        "amount": 1000
+      },
+	  {
+        "id": 2577,
+        "amount": 1000
+      },
+	  {
+        "id": 2581,
+        "amount": 1000
+      },
+	  {
+        "id": 12596,
+        "amount": 1000
+      },
+      {
+        "id": 6733,
+        "amount": 1000
+      },
+      {
+        "id": 10548,
+        "amount": 1000
+      },
+      {
+        "id": 10551,
+        "amount": 1000
+      },
+      {
+        "id": 6570,
+        "amount": 1000
+      },
+      {
+        "id": 7462,
+        "amount": 1000
+      },
+      {
+        "id": 12931,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": false,
+    "currency": "BLOOD_MONEY"
+  },
+  {
+    "name": "Donator Ticket Shop",
+    "items": [
+      {
+        "id": 21999,
+        "amount": 1000
+      },
+      {
+        "id": 22000,
+        "amount": 1000
+      },
+      {
+        "id": 22002,
+        "amount": 1000
+      },
+      {
+        "id": 22003,
+        "amount": 1000
+      },
+      {
+        "id": 22004,
+        "amount": 1000
+      },
+      {
+        "id": 22005,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "DONATOR_TICKETS"
+  },
+  {
+    "name": "General Store",
+    "items": [
+    {
+        "id": 952,
+        "amount": 1000
+      }
+    ],
+    "restock": true,
+    "can-sell-items": true,
+    "currency": "COINS"
+  }
+]

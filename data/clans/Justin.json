@@ -1,0 +1,20 @@
+{
+  "clan_name": "Justin",
+  "clan_owner": "Justin",
+  "lootshare": false,
+  "friends_list": [],
+  "online_members": [],
+  "registered_members": {
+    "Justin": {
+      "clan_owner": "Justin",
+      "player_name": "Justin",
+      "player_rank": "OWNER"
+    }
+  },
+  "settings": [
+    "ANYONE",
+    "ANYONE",
+    "ONLY_ME",
+    "ONLY_ME"
+  ]
+}
