@@ -72,7 +72,7 @@ public class Constants {
 	/**
 	 * The name of the server
 	 */
-	public static final String SERVER_NAME = "Venenatis";
+	public static final String SERVER_NAME = "The Wildy";
 	
 	/**
 	 * The port in which this server is bound upon
