@@ -1,0 +1,7 @@
+List of upcoming updates
+
+
+-Slayer
+-Fix Spec on NPCS's
+-Decide on game Modes
+-Re-do quest tab

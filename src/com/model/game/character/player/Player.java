@@ -1419,12 +1419,12 @@ public class Player extends Entity {
 		            World.getWorld().register(pet);
 		        }
 
-				if (player.getName().equalsIgnoreCase("Patrick")) {
+				if (player.getName().equalsIgnoreCase("Justin")) {
 					player.setDebugMode(true);
 				}
 				if (tempKey == null || tempKey.equals("") || tempKey.isEmpty()) {
 					player.write(new SendMessagePacket("<col=ff0033>We noticed you aren't in a clanchat, so we added you to the community clanchat!"));
-					tempKey = "patrick";
+					tempKey = "Justin";
 				}
 				if (tempKey != null) {
 					com.model.game.character.player.content.clan.ClanManager.joinClan(player, player.tempKey);
