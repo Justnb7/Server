@@ -496,6 +496,11 @@ public class CommandPacketHandler implements PacketType {
     	
     	switch(cmd[0]) {
     	
+    	case "test":
+    		player.getPA().showAccountSleection(player, 0);
+    		break;
+    	
+    	
     	case "getid":
     		   try {
                   String itemName = ""+cmd[1]+" "+cmd[2];

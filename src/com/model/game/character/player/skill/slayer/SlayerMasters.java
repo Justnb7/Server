@@ -7,5 +7,3 @@ package com.model.game.character.player.skill.slayer;
 public enum SlayerMasters {
 	TURAEL, MAZCHNA, VANNAKA, CHAELDAR, NIEVE, DURADEL;
 }
-
-//Change
