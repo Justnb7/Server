@@ -33,7 +33,7 @@ import com.model.game.character.combat.weapon.AttackStyle;
 import com.model.game.character.combat.weapon.WeaponInterface;
 import com.model.game.character.npc.BossDeathTracker;
 import com.model.game.character.npc.NPCAggression;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.npc.SlayerDeathTracker;
 import com.model.game.character.npc.pet.Pet;
 import com.model.game.character.player.account.Account;
@@ -60,6 +60,7 @@ import com.model.game.character.player.controller.ControllerManager;
 import com.model.game.character.player.dialogue.DialogueManager;
 import com.model.game.character.player.instances.InstancedAreaManager;
 import com.model.game.character.player.instances.impl.KrakenInstance;
+import com.model.game.character.player.minigames.fight_caves.FightCaves;
 import com.model.game.character.player.minigames.pest_control.PestControl;
 import com.model.game.character.player.minigames.pest_control.PestControlRewards;
 import com.model.game.character.player.minigames.warriors_guild.WarriorsGuild;
@@ -101,12 +102,6 @@ import com.model.utility.Utility;
 import io.netty.buffer.Unpooled;
 
 public class Player extends Entity {
-	
-	private WarriorsGuild warriorsGuild = new WarriorsGuild(this);
-
-	public WarriorsGuild getWarriorsGuild() {
-		return warriorsGuild;
-	}
 	
 	//Fletching variables
 	public boolean isFletching = false, needsFletchDelay = false;
@@ -764,7 +759,7 @@ public class Player extends Entity {
 	public int getId() {
 		return getIndex();
 	}
-	//testt /dadfads
+	
 	/**
 	 * The player's skill levels.
 	 */
@@ -797,6 +792,16 @@ public class Player extends Entity {
 	@Override
 	public Position getPosition() {
 		return new Position(absX, absY, heightLevel);
+	}
+	
+	@Override
+	public Position getCentreLocation() {
+		return getPosition();
+	}
+	
+	@Override
+	public int getProjectileLockonIndex() {
+		return -getIndex() - 1;
 	}
 
 	public long lastBankDeposit;
@@ -1016,7 +1021,7 @@ public class Player extends Entity {
 	}
 
 	public Set<Player> localPlayers = new LinkedHashSet<>(255);
-	public Set<Npc> localNpcs = new LinkedHashSet<>(255);
+	public Set<NPC> localNpcs = new LinkedHashSet<>(255);
 
 	public boolean withinDistance(Player otherPlr) {
 		if (heightLevel != otherPlr.heightLevel) {
@@ -1026,7 +1031,7 @@ public class Player extends Entity {
 		return deltaX <= 15 && deltaX >= -16 && deltaY <= 15 && deltaY >= -16;
 	}
 
-	public boolean withinDistance(Npc npc) {
+	public boolean withinDistance(NPC npc) {
 		if (heightLevel != npc.heightLevel) {
 			return false;
 		}
@@ -1218,7 +1223,6 @@ public class Player extends Entity {
 	}
 
 	public void putInCombat(int attacker) {
-		underAttackBy = attacker;
 		logoutDelay.reset();
 		singleCombatDelay.reset();
 		updateLastCombatAction();
@@ -1456,8 +1460,8 @@ public class Player extends Entity {
 				if (x > pc.getMinimumX() && x < pc.getMaximumX() && y > pc.getMinimumY() && y < pc.getMaximumY()) {
 					player.getPA().movePlayer(2657, 2639, 0);
 				} else if (x > fc.getMinimumX() && x < fc.getMaximumX() && y > fc.getMinimumY() && y < fc.getMaximumY()) {
-					//player.message("Wave " + (player.waveId + 1) + " will start in approximately 5-10 seconds. ");
-					//player.getFightCave().startWave();
+					player.message("Wave " + (player.waveId + 1) + " will start in approximately 5-10 seconds. ");
+					player.getFightCave().startWave();
 				}
 				ControllerManager.setControllerOnWalk(player);
 				controller.onControllerInit(player);
@@ -1583,11 +1587,9 @@ public class Player extends Entity {
 	public void combatProcessing() {
 		try {
 			if (singleCombatDelay.elapsed(6000)) {
-				underAttackBy = 0;
 				setInCombat(false);
 			}
 			if (singleCombatDelay2.elapsed(6000)) {
-				underAttackBy2 = 0;
 				resetDamageReceived();
 			}
 			if (skullTimer > 0) {
@@ -1724,7 +1726,7 @@ public class Player extends Entity {
 	 * @return If the player is capable of being unregistered from the server
 	 */
 	public boolean canUnregister() {
-		if (underAttackBy <= 0 && underAttackBy2 <= 0) {
+		if (System.currentTimeMillis() - lastWasHitTime > 4000) { // out of cb
 			xlogDelay = 0;
 		}
 		boolean inCombat = (System.currentTimeMillis() - xlogDelay < 20000);
@@ -2128,16 +2130,6 @@ public class Player extends Entity {
 	public int getMaximumHealth() {
 		int base = this.getSkills().getLevelForExperience(Skills.HITPOINTS);
 		return base;
-	}
-	
-	/**
-	 * The single instance of the {@link PestControlRewards} class for this player
-	 * @return	the reward class
-	 */
-	private PestControlRewards pestControlRewards = new PestControlRewards(this);
-	
-	public PestControlRewards getPestControlRewards() {
-		return pestControlRewards;
 	}
 	
 	/**
@@ -2990,11 +2982,11 @@ public class Player extends Entity {
 	public int WillKeepAmt1, WillKeepAmt2, WillKeepAmt3, WillKeepAmt4, WillKeepItem1, WillKeepItem2, WillKeepItem3,
 			WillKeepItem4, WillKeepItem1Slot, WillKeepItem2Slot, WillKeepItem3Slot, WillKeepItem4Slot, EquipStatus;
 	
-	public int totalLevel, lastX, lastY,
+	public int totalLevel,
 			lastChatId = 1, privateChat, specBarId, skullTimer,
 			followDistance,
 			xInterfaceId, xRemoveId, xRemoveSlot, frozenBy,
-			underAttackBy, underAttackBy2, wildLevel, teleTimer, killerId,
+			wildLevel, teleTimer, killerId,
 			attackDelay, npcClickIndex, oldSpellId,
 			clickNpcType, clickObjectType, objectId, itemUsedOn, objectX, objectY, tradeStatus, tradeWith,
 			walkTutorial = 15, skullIcon = -1, bountyPoints;
@@ -3133,5 +3125,42 @@ public class Player extends Entity {
 	//Minigame variables
 	public int pestControlDamage;
 	public boolean isAnimatedArmourSpawned;
+	public int waveId;
+	public boolean secondOption;
+	
+	private FightCaves fightcave = null;
+	
+	public FightCaves getFightCave() {
+		if (fightcave == null)
+			fightcave = new FightCaves(this);
+		return fightcave;
+	}
+	
+    private boolean completedFightCaves;
+	
+	public boolean hasCompletedFightCaves() {
+		return completedFightCaves;
+	}
 
+	public void setCompletedFightCaves() {
+		if(!completedFightCaves) {
+			completedFightCaves = true;
+		}
+	}
+	
+	/**
+	 * The single instance of the {@link PestControlRewards} class for this player
+	 * @return	the reward class
+	 */
+	private PestControlRewards pestControlRewards = new PestControlRewards(this);
+	
+	public PestControlRewards getPestControlRewards() {
+		return pestControlRewards;
+	}
+	
+	private WarriorsGuild warriorsGuild = new WarriorsGuild(this);
+
+	public WarriorsGuild getWarriorsGuild() {
+		return warriorsGuild;
+	}
 }

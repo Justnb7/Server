@@ -2,7 +2,7 @@ package com.model.game.character.player;
 import com.model.Server;
 import com.model.game.character.Animation;
 import com.model.game.character.combat.magic.SpellBook;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.npc.pet.Pet;
 import com.model.game.character.player.content.BrimhavenVines;
 import com.model.game.character.player.content.WildernessDitch;
@@ -159,6 +159,24 @@ public class ActionHandler {
 		}
 
 		switch (id) {
+		
+		/**
+		 * Entering the Fight Caves.
+		 */
+		case 11833:
+			if (Boundary.entitiesInArea(Boundary.FIGHT_CAVE) >= 50) {
+				player.message("There are too many people using the fight caves at the moment. Please try again later");
+				return;
+			}
+			player.getFightCave().enterFightCaves();
+			break;
+
+		case 11834:
+			if (Boundary.isIn(player, Boundary.FIGHT_CAVE)) {
+				player.getFightCave().exitCave(1);
+				return;
+			}
+			break;
 		
 		/**
 		 * Pest control
@@ -653,7 +671,7 @@ public class ActionHandler {
 		}
 	}
 
-	public void firstClickNpc(Npc npc) {
+	public void firstClickNpc(NPC npc) {
 		player.clickNpcType = 0;
 		
 		if (player.inDebugMode()) {
@@ -798,7 +816,7 @@ public class ActionHandler {
 		}
 	}
 
-	public void secondClickNpc(Npc npc) {
+	public void secondClickNpc(NPC npc) {
 		
 		player.clickNpcType = 0;
 		
@@ -816,6 +834,11 @@ public class ActionHandler {
 		}
 
 		switch (npc.npcId) {
+		
+		case 2180:
+			player.secondOption = true;
+			player.dialogue().start("FIGHT_CAVE");
+			break;
 		
 		case 3078:
 			player.getThieving().pickpocket(Pickpocket.MAN, npc);
@@ -935,7 +958,7 @@ public class ActionHandler {
 		}
 	}
 
-	public void thirdClickNpc(Npc npc) {
+	public void thirdClickNpc(NPC npc) {
 		
 		player.clickNpcType = 0;
 		
@@ -998,7 +1021,7 @@ public class ActionHandler {
 		}
 	}
 
-	public void fourthClickNpc(Npc npc) {
+	public void fourthClickNpc(NPC npc) {
 		
 		player.clickNpcType = 0;
 		

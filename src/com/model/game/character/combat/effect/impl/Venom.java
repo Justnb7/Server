@@ -3,15 +3,14 @@ package com.model.game.character.combat.effect.impl;
 import com.model.Server;
 import com.model.game.character.Hit;
 import com.model.game.character.HitType;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.player.Player;
 import com.model.game.character.player.packets.out.SendMessagePacket;
 import com.model.task.ScheduledTask;
 
 /**
- * 
- * @author Patrick van Elderen
- * @version 1.0
+ * The class which handles Venom activity
+ * @author https://www.rune-server.ee/members/max+_/
  * @date 14-08-2015
  *
  */
@@ -26,7 +25,7 @@ public class Venom {
 		playerVenom(player);
 	}
 	
-	public Venom(Npc npc){
+	public Venom(NPC npc){
 		npcVenom(npc);
 	}
 	
@@ -61,7 +60,7 @@ public class Venom {
 	 * This method venoms npcs.
 	 * @param npc
 	 */
-	private void npcVenom(Npc npc) {
+	private void npcVenom(NPC npc) {
 		if(npc != null && !npc.isDead) {
 			npc.damage(new Hit(damage, HitType.VENOM));
 			damage = (damage + 2 > 20 ? 20 : damage + 2);
@@ -84,7 +83,7 @@ public class Venom {
 	 * @param npc
 	 * @return {@code true} if the npc can get venomed, {@code false} otherwise.
 	 */
-	public static boolean venomImmune(Npc npc) {
+	public static boolean venomImmune(NPC npc) {
 		switch (npc.getId()) {
 		case 6610:
 		case 6611:

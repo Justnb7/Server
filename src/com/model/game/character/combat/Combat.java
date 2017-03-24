@@ -17,7 +17,7 @@ import com.model.game.character.combat.pvm.PlayerVsNpcCombat;
 import com.model.game.character.combat.pvp.PlayerVsPlayerCombat;
 import com.model.game.character.combat.range.RangeData;
 import com.model.game.character.combat.weaponSpecial.Special;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.player.Player;
 import com.model.game.character.player.PlayerAssistant;
 import com.model.game.character.player.Skills;
@@ -56,7 +56,7 @@ public class Combat {
                 return;
             }
         } else {
-            Npc npc = (Npc) target;
+            NPC npc = (NPC) target;
             // Clip check first. Get line of sight.
             if (!PlayerVsNpcCombat.canTouch(player, npc, true)) {
                 return;
@@ -71,11 +71,11 @@ public class Combat {
             Player ptarg = (Player) target;
             player.getActionSender().sendString(ptarg.getName() + "-" + player.getSkills().getLevelForExperience(Skills.HITPOINTS) + "-" + ptarg.getSkills().getLevel(Skills.HITPOINTS) + "-" + player.getName(), 35000);
         } else {
-            Npc npc = (Npc) target;
+            NPC npc = (NPC) target;
             if (npc.npcId != 493 || npc.npcId != 496 || npc.npcId != 5534) {
                 Player attacker = World.getWorld().PLAYERS.get(npc.underAttackBy);
                 //System.out.println(Npc.getName(npc.npcType).replaceAll("_", " ") + " - "+ npc.maximumHealth +" - "+ npc.HP +" - "+ ((attacker != null) ? "-"+attacker.getUsername() : "null"));
-                player.getActionSender().sendString(Npc.getName(npc.npcId).replaceAll("_", " ") + "-" + npc.maximumHealth + "-" + npc.currentHealth + ((attacker != null) ? "-" + attacker.getName() : ""), 35000);
+                player.getActionSender().sendString(NPC.getName(npc.npcId).replaceAll("_", " ") + "-" + npc.maximumHealth + "-" + npc.currentHealth + ((attacker != null) ? "-" + attacker.getName() : ""), 35000);
             }
         }
 
@@ -92,7 +92,7 @@ public class Combat {
             return;
         }
         if (target.isNPC()) {
-            PlayerVsNpcCombat.moveOutFromUnderLargeNpc(player, (Npc) target);
+            PlayerVsNpcCombat.moveOutFromUnderLargeNpc(player, (NPC) target);
         }
 
         if (target.isPlayer()) {
@@ -100,7 +100,7 @@ public class Combat {
                 return;
             }
         }
-        if (target.isNPC() && !PlayerVsNpcCombat.inDistance(player, (Npc) target)) {
+        if (target.isNPC() && !PlayerVsNpcCombat.inDistance(player, (NPC) target)) {
             return;
         }
 
@@ -108,7 +108,7 @@ public class Combat {
 		/*
          * Verify if we have the proper arrows/bolts
 		 */
-        if (player.getCombatType() == CombatType.RANGED) {
+        if (player.getCombatType() == CombatType.RANGE) {
             int wep = player.playerEquipment[player.getEquipment().getWeaponId()];
             int ammo = player.playerEquipment[player.getEquipment().getQuiverId()];
             boolean crystal = wep >= 4212 && wep <= 4223;
@@ -184,7 +184,7 @@ public class Combat {
         }
 
         if (target.isNPC()) {
-            Npc npc = (Npc) target;
+            NPC npc = (NPC) target;
             if (npc.getSize() == 1) {
                 if (player.getX() != npc.getX() && npc.getY() != player.getY()
                         && player.getCombatType() == CombatType.MELEE) {
@@ -197,7 +197,7 @@ public class Combat {
         }
 
 
-        if (player.getCombatType() == CombatType.MAGIC || player.getCombatType() == CombatType.RANGED ||
+        if (player.getCombatType() == CombatType.MAGIC || player.getCombatType() == CombatType.RANGE ||
                 (CombatData.usingHalberd(player) && player.goodDistance(player.getX(), player.getY(), target.getX(), target.getY(), 2))) {
             player.stopMovement();
         }
@@ -238,7 +238,7 @@ public class Combat {
                 }
             }
         } else if (target.isNPC()) {
-            Npc npc = (Npc) target;
+            NPC npc = (NPC) target;
             if (!npc.infected && player.getEquipment().canInfect(player) && !Venom.venomImmune(npc)) {
                 if (Utility.getRandom(10) == 5) {
                     new Venom(npc);
@@ -269,7 +269,7 @@ public class Combat {
 
             // Npc block anim
             if (target.isNPC()) {
-                Npc npc = (Npc) target;
+                NPC npc = (NPC) target;
                 if (npc.maximumHealth > 0 && npc.attackTimer > 3) {
                     if (npc.npcId != 2042 && npc.npcId != 2043 & npc.npcId != 2044 && npc.npcId != 3127) {
                         npc.playAnimation(Animation.create(NPCCombatData.getNPCBlockAnimation(npc)));
@@ -296,6 +296,8 @@ public class Combat {
         }
         player.updateLastCombatAction();
         player.setInCombat(true);
+        target.lastAttacker = player;
+        target.lastWasHitTime = System.currentTimeMillis();
 		/*if (player.petBonus) {
 			player.getCombat().handlePetHit(World.getWorld().getPlayers().get(player.playerIndex));
 		}*/
@@ -320,12 +322,13 @@ public class Combat {
             if (!(CombatFormulae.getAccuracy(player, target, 0, 1.0))) {
                 dam1 = 0;
             }
-
-         //  Hit hitInfo = target.take_hit(player, dam1, CombatType.MELEE, false);
+            
+            //setup the Hit
             Hit hitInfo = target.take_hit(player, dam1, CombatType.MELEE, false).giveXP(player);
+            // (2) Here: submit an event that applies the Hit X ticks later
             Combat.hitEvent(player, target, 1, hitInfo, CombatType.MELEE);
 
-        } else if (player.getCombatType() == CombatType.RANGED) {
+        } else if (player.getCombatType() == CombatType.RANGE) {
 
             if (player.getAttackStyle() == 2)
                 player.attackDelay--;
@@ -377,9 +380,8 @@ public class Combat {
             }
 
             // Apply dmg.
-            Hit hitInfo = target.take_hit(player, dam1, CombatType.RANGED, false).giveXP(player);
-           // Hit hitInfo = target.take_hit(player, dam1, CombatType.RANGED, false);
-            Combat.hitEvent(player, target, 1, hitInfo, CombatType.RANGED);
+            Hit hitInfo = target.take_hit(player, dam1, CombatType.RANGE, false).giveXP(player);
+            Combat.hitEvent(player, target, 1, hitInfo, CombatType.RANGE);
 
             int[] endGfx = RangeData.getRangeEndGFX(player);
             // Graphic that appears when hit appears.
@@ -529,7 +531,7 @@ public class Combat {
                 int selfDamage = (int) (attacker.getSkills().getLevel(Skills.HITPOINTS) * 0.1);
                 if (selfDamage < attacker.getSkills().getLevel(Skills.HITPOINTS)) {
                     int opHP = defender.isPlayer() ? ((Player) defender).getSkills().getLevel(Skills.HITPOINTS)
-                            : ((Npc) defender).currentHealth;
+                            : ((NPC) defender).currentHealth;
                     dam1 += opHP * 0.2;
                     attacker.damage(new Hit(selfDamage));
                 }
@@ -645,7 +647,7 @@ public class Combat {
             boolean javalin = player.getCombat().properJavalins();
 
             if (handthrown || player.usingCross || player.usingBow || player.getEquipment().wearingBallista(player) || player.getEquipment().wearingBlowpipe(player)) {
-                player.setCombatType(CombatType.RANGED);
+                player.setCombatType(CombatType.RANGE);
                 followDist = handthrown ? 4 : 7;
             }
         }
@@ -660,33 +662,47 @@ public class Combat {
 
     }
 
-    public static void hitEvent(Player player, Entity target, int delay, Hit hit, CombatType combatType) {
+    public static void hitEvent(Entity attacker, Entity target, int delay, Hit hit, CombatType combatType) {
 
         // Schedule a task
         Server.getTaskScheduler().schedule(new ScheduledTask(delay) {
             public void execute() {
-                PlayerSounds.sendBlockOrHitSound(player, hit.getDamage() > 0);
+            	if (attacker.isPlayer())
+            		PlayerSounds.sendBlockOrHitSound((Player)attacker, hit.getDamage() > 0);
+            	
+            	// Apply the damage inside Hit
                 target.damage(hit);
 
-                // Range attack invoke block emote when hit appears.
-                if (hit.cbType == CombatType.RANGED && target.isNPC()) {
-                    if (((Npc) target).attackTimer < 5)
-                        target.playAnimation(Animation.create(NPCCombatData.getNPCBlockAnimation(((Npc) target))));
-
-                    player.setAttribute("ignore defence", false);
-                }
-                if (hit.cbType == CombatType.MAGIC) {
-                    if (player.getCombat().getEndGfxHeight() == 100 && !player.magicFailed) { // end GFX
-                        target.playGraphics(Graphic.create(player.MAGIC_SPELLS[player.oldSpellId][5], 0, 100));
-                    } else if (!player.magicFailed) {
-                        target.playGraphics(Graphic.create(player.MAGIC_SPELLS[player.oldSpellId][5], 0, player.getCombat().getEndGfxHeight()));
-                    } else if (player.magicFailed) {
-                        target.playGraphics(Graphic.create(85, 0, 100));
-                    }
-
+                if (attacker.isPlayer()) {
+                	Player player = (Player) attacker;
+	                // Range attack invoke block emote when hit appears.
+	                if (hit.cbType == CombatType.RANGE && target.isNPC()) {
+	                    if (((NPC) target).attackTimer < 5)
+	                        target.playAnimation(Animation.create(NPCCombatData.getNPCBlockAnimation(((NPC) target))));
+	
+	                    player.setAttribute("ignore defence", false);
+	                }
+	                if (hit.cbType == CombatType.MAGIC) {
+	                    if (player.getCombat().getEndGfxHeight() == 100 && !player.magicFailed) { // end GFX
+	                        target.playGraphics(Graphic.create(player.MAGIC_SPELLS[player.oldSpellId][5], 0, 100));
+	                    } else if (!player.magicFailed) {
+	                        target.playGraphics(Graphic.create(player.MAGIC_SPELLS[player.oldSpellId][5], 0, player.getCombat().getEndGfxHeight()));
+	                    } else if (player.magicFailed) {
+	                        target.playGraphics(Graphic.create(85, 0, 100));
+	                    }
+	
+	                }
                 }
                 this.stop();
             }
         });
+    }
+
+    public static boolean hitRecently(Entity target, int timeframe) {
+        return System.currentTimeMillis() - target.lastWasHitTime <= timeframe;
+    }
+
+    public static boolean incombat(Player player) {
+        return System.currentTimeMillis() - player.lastWasHitTime < 4000;
     }
 }

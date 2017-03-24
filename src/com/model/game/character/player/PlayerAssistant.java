@@ -5,7 +5,7 @@ import com.model.game.character.Entity;
 import com.model.game.character.combat.combat_data.CombatAnimation;
 import com.model.game.character.combat.combat_data.CombatType;
 import com.model.game.character.combat.effect.impl.DragonfireShieldEffect;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.player.content.BossTracker;
 import com.model.game.character.player.content.trade.Trading;
 import com.model.game.character.player.packets.out.*;
@@ -171,8 +171,8 @@ public class PlayerAssistant {
          * Out of combat following, possibly a bug or 2?
          */
         if (!forCombat) {
-            int fx = following.lastX;
-            int fy = following.lastY;
+            int fx = following.lastTile.getX();
+            int fy = following.lastTile.getY();
 
             int delay = (player.getMovementHandler().isMoving() || ((Player)following).getMovementHandler().isMoving()) ? 1
                 : (player.walkTutorial + 1 >= Integer.MAX_VALUE ? player.walkTutorial = 0 : player.walkTutorial++);
@@ -266,7 +266,7 @@ public class PlayerAssistant {
 			return;
 		}
 
-        Npc npc = (Npc) targ;
+        NPC npc = (NPC) targ;
 
         boolean inside = false;
         for (Position tile : npc.getTiles()) {
@@ -397,7 +397,7 @@ public class PlayerAssistant {
                 if (player.getCombat().target.isPlayer())
                     dfsEffect.execute(player, (Player)player.getCombat().target, damage);
                 else
-                    dfsEffect.execute(player, (Npc)player.getCombat().target, damage);
+                    dfsEffect.execute(player, (NPC)player.getCombat().target, damage);
                 player.setLastDragonfireShieldAttack(System.currentTimeMillis());
 			}
 			break;

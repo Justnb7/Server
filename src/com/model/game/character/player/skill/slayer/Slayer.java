@@ -1,6 +1,6 @@
 package com.model.game.character.player.skill.slayer;
 
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.player.Player;
 import com.model.game.character.player.Skills;
 import com.model.game.character.player.packets.out.SendMessagePacket;
@@ -45,6 +45,7 @@ public class Slayer {
 
 	public static boolean isSlayerTask(Player player, int npcId) {
 		if (player.getSlayerTask() == npcId) {
+			player.debug("task");
 			return true;
 		}
 		return false;
@@ -57,10 +58,10 @@ public class Slayer {
 	 * @return If the player's slayer level is above the level required return
 	 *         true else false.
 	 */
-	public static boolean canAttack(Player player, Npc npc) {
+	public static boolean canAttack(Player player, NPC npc) {
 		if (isSlayerTask(player, npc.npcId)) {
-			if (task.getSlayerReq() > player.getSkills().getLevel(Skills.SLAYER)) {
-				return true;
+			if (player.getSkills().getLevel(Skills.SLAYER) < task.getSlayerReq()) {
+				return false;
 			}
 			if(npc.npcId == 5534 && player.getSlayerTask() != 494) {
 				player.write(new SendMessagePacket("You must have Kraken's as a slayer-task to disturb these whirlpools."));
@@ -71,7 +72,7 @@ public class Slayer {
 				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 }
