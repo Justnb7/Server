@@ -100,7 +100,7 @@ public class ActionButtonPacketHandler implements PacketType {
 				return;
 			}
 		}
-		
+		player.getPestControlRewards().click(button);
 		/*Obelisks.chooseTeleport(player, button);*/
 		PrayerHandler.togglePrayer(player, button);
 		player.getLunarSpell().processLunarSpell(button);
@@ -109,26 +109,7 @@ public class ActionButtonPacketHandler implements PacketType {
 		// AttackStyle.switchAttackStyle(player, buttonId);
 		ActionButtonEventListener.onButtonClick(player, button);
 		switch (button) {
-		case 176172:
-			player.getPA().showAccountSleection(player, 0); 
-			//player.accountSelect = 0;// hero
-			break;
-		case 176174:
-			player.getPA().showAccountSleection(player, 1);
-			//player.accountSelect = 1;//legend
-			break;
-		case 176176:
-			player.getPA().showAccountSleection(player, 2);
-			//player.accountSelect = 2;//hardcore
-			break;
-		case 176178:
-			player.getPA().showAccountSleection(player, 3);
-			//player.accountSelect = 3;//master
-			break;
-		case 176223:
-			player.getPA().showAccountSleection(player, 4);
-			//player.accountSelect = 4;//master
-			break;
+		
 		case 114220:
 			player.getAchievements().drawInterface(0);
 			break;

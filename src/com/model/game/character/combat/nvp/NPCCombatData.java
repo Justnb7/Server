@@ -3,8 +3,8 @@ package com.model.game.character.combat.nvp;
 import java.util.Arrays;
 import java.util.List;
 
-import com.model.game.character.npc.Npc;
-import com.model.game.character.npc.combat.Bosses;
+import com.model.game.character.combat.npcs.BossScripts;
+import com.model.game.character.npc.NPC;
 import com.model.utility.json.definitions.NpcDefinition;
 
 /**
@@ -25,17 +25,14 @@ public class NPCCombatData {
 	/**
 	 * Get's the npcs defending animation.
 	 */
-	public static int getNPCBlockAnimation(Npc npc) {
+	public static int getNPCBlockAnimation(NPC npc) {
 		return NpcDefinition.getDefinitions()[npc.npcId].getDefenceAnimation();
 	}
 	
 	/**
 	 * Emotes
 	 */
-	public static int getAttackEmote(Npc npc) {
-		if (Bosses.isBoss(npc.npcId)) {
-			return Bosses.get(npc.npcId).getAttackEmote(npc);
-		}
+	public static int getAttackEmote(NPC npc) {
 		if (npc.npcId >= 1694 && npc.npcId <= 1703) {
 			return 3901;
 		}
@@ -45,116 +42,18 @@ public class NPCCombatData {
 		return npc.getDefinition().getAttackAnimation();
 	}
 	
-	public static int getDeadEmote(Npc npc) {
+	public static int getDeadEmote(NPC npc) {
 		return npc.getDefinition().getDeathAnimation();
-	}
-
-	/**
-	 * Attack delays
-	 */
-	public static int getNpcDelay(Npc npc) {
-		if (Bosses.isBoss(npc.npcId)) {
-			return Bosses.get(npc.npcId).getAttackDelay(npc);
-		}
-		switch (npc.npcId) {
-		case 7497:
-			return 6;
-		case 1672:
-		case 1675:
-		case 5996:
-			return 7;
-		case 3127:
-			return 8;
-		case 6260:
-			return 7;
-		case 6204:
-			return 8;
-		case 6208:
-		case 2043:
-			return 8;
-		case 2205:
-			return 4;
-		default:
-			return npc.getDefinition().getAttackSpeed();
-		}
-	}
-
-	/**
-	 * Hit delays
-	 */
-	public static int getHitDelay(Npc npc) {
-		if (Bosses.isBoss(npc.npcId)) {
-			return Bosses.get(npc.npcId).getHitDelay(npc);
-		}
-		switch (npc.npcId) {
-		
-		case 7497:
-			return 5;
-		
-		case 5535:
-			return 5;
-		
-		case 6607:
-		case 6616:
-			return 4;
-		
-		case 492:
-			return 4;
-			
-		case 6528:
-			
-		case 4303:
-		case 4304:
-			if (npc.attackStyle == 1 || npc.attackStyle == 2) {
-				return 3;
-			} else {
-				return 2;
-			}
-			
-		case 2043:
-			return 6;
-			
-		case 3125:
-		case 3121:
-		case 2167:
-			return 3;
-
-		case 3127:
-			if (npc.attackStyle == 1 || npc.attackStyle == 2)
-				return 5;
-			else
-				return 2;
-
-		case 1672:
-			return 4;
-			
-		case 1675:
-			return 3;
-			
-		case 6361:
-			if (npc.attackStyle == 2)
-				return 4;
-			else if (npc.attackStyle == 1)
-				return 4;
-			else
-				return 2;
-			
-		case 319:
-			return 5;
-			
-		default:
-			return 2;
-		}
 	}
 	
 	/**
 	 * Gets the projectile speed for the npc
 	 * 
 	 * @param npc
-	 *            The {@link Npc} to fetch the projectile speed for
+	 *            The {@link NPC} to fetch the projectile speed for
 	 * @return The projectile speed for the npc
 	 */
-	public static int getProjectileSpeed(Npc npc) {
+	public static int getProjectileSpeed(NPC npc) {
 		switch (npc.npcId) {
 		
 		case 5535:
@@ -167,13 +66,6 @@ public class NPCCombatData {
 		case 7497:
 			return 85;
 
-		case 6361:
-			if (npc.attackStyle == 2)
-				return 150;
-			else if (npc.attackStyle == 1)
-				return 100;
-			else if (npc.attackStyle == 0)
-				return 100;
 		case 2265:
 		case 2266:
 		case 2054:
@@ -235,47 +127,6 @@ public class NPCCombatData {
 	}
 
 	/**
-	 * Gets the offset for the npc
-	 * 
-	 * @param npc
-	 *            The {@link Npc} to get the offset for
-	 * @return The offset for the npc
-	 */
-	public static int offset(Npc npc) {
-		if (Bosses.isBoss(npc.npcId)) {
-			return Bosses.get(npc.npcId).offSet(npc);
-		}
-		switch (npc.npcId) {
-		case 2044:
-			return 0;
-			
-		case 6581:
-		case 6580:
-			return 1;
-			
-		case 3127:
-		case 3125:
-			return 1;
-			
-		}
-		return 0;
-	}
-
-	public static boolean switchesAttackers(Npc npc) {
-		if (npc == null)
-			return false;
-		if (Bosses.isBoss(npc.npcId)) {
-			return Bosses.get(npc.npcId).switchesAttackers();
-		}
-		switch (npc.npcId) {
-		case 5579:
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
 	 * Gets the list of unspawnwable npcs
 	 * @return The list of unspawnable npcs
 	 */
@@ -286,9 +137,9 @@ public class NPCCombatData {
 	/**
 	* Distanced required to attack
 	**/	
-	public static int distanceRequired(Npc npc) {
-		if (Bosses.isBoss(npc.npcId)) {
-			return Bosses.get(npc.npcId).distanceRequired(npc);
+	public static int distanceRequired(NPC npc) {
+		if (BossScripts.isBoss(npc.npcId)) {
+			return BossScripts.get(npc.npcId).distance(null);
 		}
 		switch (npc.npcId) {
 		
@@ -335,9 +186,6 @@ public class NPCCombatData {
 		case 5961:
 		case 5947:
 			return 12;
-
-		case 239:
-			return npc.attackStyle > 0 ? 6 : 1;
 
 		case 2054:
 			return 6;

@@ -5,14 +5,13 @@ import com.model.game.character.Animation;
 import com.model.game.character.combat.Combat;
 import com.model.game.character.combat.combat_data.CombatData;
 import com.model.game.character.combat.combat_data.CombatType;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.player.Boundary;
 import com.model.game.character.player.Player;
 import com.model.game.character.player.ProjectilePathFinder;
 import com.model.game.character.player.instances.impl.KrakenInstance;
 import com.model.game.character.player.minigames.warriors_guild.WarriorsGuild;
 import com.model.game.character.player.packets.out.SendMessagePacket;
-import com.model.game.character.player.skill.slayer.Slayer;
 import com.model.game.character.walking.PathFinder;
 import com.model.game.location.Position;
 import com.model.task.ScheduledTask;
@@ -33,7 +32,7 @@ public class PlayerVsNpcCombat {
 		return false;
 	}
 	
-	public static void kraken(Player player, Npc npc, int damage) {
+	public static void kraken(Player player, NPC npc, int damage) {
 		
 		if (npc.npcId == 5534 && npc.transformId != 5535) {
 			npc.transforming = true;
@@ -92,19 +91,19 @@ public class PlayerVsNpcCombat {
 	}
 
 	/**
-	 * Validates if the {@link Player} can attack the {@link Npc}
+	 * Validates if the {@link Player} can attack the {@link NPC}
 	 * 
 	 * @param player
 	 *            The {@link Player} attacking the npc
 	 * @param npc
-	 *            The {@link Npc} which is being attacked
+	 *            The {@link NPC} which is being attacked
 	 * @return If the player can attack the npc
 	 */
-	public static boolean canTouch(Player player, Npc npc, boolean findpath) {
+	public static boolean canTouch(Player player, NPC npc, boolean findpath) {
 		boolean ignoreClip = npc.getId() == 494 || npc.getId() == 492 || npc.getId() == 493 || npc.getId() == 496 || npc.getId() == 5534 || npc.getId() == 5535 || npc.getId() == 2054 || npc.getId() == 5947;
 		if (ignoreClip)
 			return true;
-		boolean projectile = player.getCombatType() == CombatType.RANGED || player.getCombatType() == CombatType.MAGIC;
+		boolean projectile = player.getCombatType() == CombatType.RANGE || player.getCombatType() == CombatType.MAGIC;
 		if (projectile) {
 			for (Position pos : npc.getBorder()) {
 				if (ProjectilePathFinder.isProjectilePathClear(player.getPosition(), pos)) {
@@ -127,7 +126,7 @@ public class PlayerVsNpcCombat {
 		return false;
 	}
 
-	public static boolean canAttackNpc(Player player, Npc npc) {
+	public static boolean canAttackNpc(Player player, NPC npc) {
 
 		if (npc.isDead || npc.maximumHealth <= 0 || player.isDead()) {
 			player.getCombat().reset();
@@ -136,7 +135,9 @@ public class PlayerVsNpcCombat {
 		if (npc.transforming)
 			return false;
 		
+		//TODO ask Jak how to do thiss
 		/*if(!Slayer.canAttack(player, npc)) {
+			player.debug("is it cuz of own stupidity?");
 			return false;
 		}*/
 		
@@ -165,7 +166,7 @@ public class PlayerVsNpcCombat {
 		if (npc.npcId == 496 && npc.transformId != 494) {
 			KrakenInstance i = player.getKraken();
 			if (i != null && i.npcs != null && i.npcs[0] == npc) {
-				for (Npc n : i.npcs) {
+				for (NPC n : i.npcs) {
 					if (n.npcId == 5534) {
 						player.write(new SendMessagePacket("You can't disturb the kraken while the whirlpools are undisturbed."));
 						Combat.resetCombat(player);
@@ -186,7 +187,7 @@ public class PlayerVsNpcCombat {
 			return false;
 		}
 
-		if ((player.underAttackBy > 0 || player.underAttackBy2 > 0) && player.underAttackBy2 != npc.getIndex() && !player.getArea().inMulti() && !Boundary.isIn(player, Boundary.KRAKEN)) {
+		if (Combat.incombat(player) && player.lastAttacker != npc && !player.getArea().inMulti() && !Boundary.isIn(player, Boundary.KRAKEN)) {
 			Combat.resetCombat(player);
 			player.write(new SendMessagePacket("I am already under attack."));
 			return false;
@@ -206,7 +207,7 @@ public class PlayerVsNpcCombat {
 		return true;
 	}
 
-	public static void moveOutFromUnderLargeNpc(Player player, Npc npc) {
+	public static void moveOutFromUnderLargeNpc(Player player, NPC npc) {
 
 		boolean inside = false;
 		boolean projectiles = player.getCombatType() != CombatType.MELEE;
@@ -271,7 +272,7 @@ public class PlayerVsNpcCombat {
 		}
 	}
 
-	public static boolean inDistance(Player player, Npc npc) {
+	public static boolean inDistance(Player player, NPC npc) {
 		boolean hasDistance = npc.npcId == 5535 ? true : false; // force 5535 tents to always be hittable
 		for (Position pos : npc.getTiles()) {
 			double distance = pos.distance(player.getPosition());
@@ -285,7 +286,7 @@ public class PlayerVsNpcCombat {
 					break;
 				}
 			} else {
-				if (distance <= (player.getCombatType() == CombatType.RANGED ? 10 : 15)) {
+				if (distance <= (player.getCombatType() == CombatType.RANGE ? 10 : 15)) {
 					hasDistance = true;
 					break;
 				}

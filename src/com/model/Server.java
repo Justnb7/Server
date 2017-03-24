@@ -48,7 +48,7 @@ public class Server {
 	 */
 	private static final Logger logger = Logger.getLogger(Server.class.getName());
 
-	//public static final Motivote MOTIVOTE = new Motivote("luzoxpk", "c01d05751b28441cfbbd1ff1f87add95");
+	public static final Motivote MOTIVOTE = new Motivote("luzoxpk", "c01d05751b28441cfbbd1ff1f87add95");
 	
 	/**
 	 * The elapsed time the server has been running for.
@@ -103,7 +103,7 @@ public class Server {
 			bind(Constants.SERVER_PORT);
 			
 			logger.info(Constants.SERVER_NAME + " has been Succesfully started.");
-			/*MOTIVOTE.checkUnredeemedPeriodically((result) -> {
+		/*	MOTIVOTE.checkUnredeemedPeriodically((result) -> {
 				result.votes().forEach((vote) -> {
 					boolean online = vote.username() != null && PlayerUpdating.isPlayerOn(vote.username());
 					

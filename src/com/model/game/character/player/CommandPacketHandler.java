@@ -1,29 +1,19 @@
 package com.model.game.character.player;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Optional;
-
 import com.model.Server;
 import com.model.game.Constants;
 import com.model.game.World;
 import com.model.game.character.Animation;
 import com.model.game.character.Graphic;
+import com.model.game.character.combat.Combat;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.npc.NPCHandler;
-import com.model.game.character.npc.Npc;
 import com.model.game.character.npc.pet.Pet;
 import com.model.game.character.player.content.clan.ClanManager;
 import com.model.game.character.player.content.teleport.TeleportExecutor;
 import com.model.game.character.player.content.trivia.TriviaBot;
 import com.model.game.character.player.packets.PacketType;
-import com.model.game.character.player.packets.out.SendChatBoxInterfacePacket;
-import com.model.game.character.player.packets.out.SendConfigPacket;
-import com.model.game.character.player.packets.out.SendInterfacePacket;
-import com.model.game.character.player.packets.out.SendMessagePacket;
-import com.model.game.character.player.packets.out.SendSongPacket;
-import com.model.game.character.player.packets.out.SendSoundPacket;
-import com.model.game.character.player.packets.out.SendWalkableInterfacePacket;
+import com.model.game.character.player.packets.out.*;
 import com.model.game.character.player.serialize.PlayerSerialization;
 import com.model.game.item.Item;
 import com.model.game.location.Position;
@@ -37,6 +27,11 @@ import com.model.utility.json.definitions.ItemDefinition;
 import com.model.utility.json.definitions.NpcDefinition;
 import com.model.utility.logging.PlayerLogging;
 import com.model.utility.logging.PlayerLogging.LogType;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * Commands
@@ -88,6 +83,12 @@ public class CommandPacketHandler implements PacketType {
     	
     	String message;
     	switch (cmd[0]) {
+    	
+    	case "pestr":
+    		player.getPestControlRewards().showInterface();
+    		return true;
+    		
+    		
     	
     	case "exp":
     		player.getSkills().addExperience(Skills.HUNTER, 1000);
@@ -178,7 +179,7 @@ public class CommandPacketHandler implements PacketType {
 				@Override
 				public void execute() {
 
-					if (player.underAttackBy != 0) {
+					if (Combat.incombat(player)) {
 						stop();
 						player.write(new SendMessagePacket("Your requested teleport has being cancelled."));
 					}
@@ -496,73 +497,6 @@ public class CommandPacketHandler implements PacketType {
     	
     	switch(cmd[0]) {
     	
-    	case "test":
-    		player.getPA().showAccountSleection(player, 0);
-    		break;
-    	
-    	
-    	case "getid":
-    		   try {
-                  String itemName = ""+cmd[1]+" "+cmd[2];
-                  player.write(new SendMessagePacket("Searching for items containing '" + itemName + "' in " + ItemDefinition.DEFINITIONS.length + " indexes..."));  
-                  String[] items = new String[101];
-                  int[] idsChecked = new int[101];
-                  for (int x = 0; x < items.length; x++) {
-                      for (int i = ItemDefinition.DEFINITIONS.length - 1; i > 0; i--) {
-                          ItemDefinition def = ItemDefinition.forId(i);
-                          if (def == null) {
-                              continue;
-                          }
-                          boolean cont = false;
-                          for (int i2 = 0; i2 < idsChecked.length; i2++) {
-                              if (idsChecked[i2] == -1) {
-                                  continue;
-                              }
-                              if (idsChecked[i2] == def.getId()) {
-                                  cont = true;
-                              }
-                          }
-                          if (cont) {
-                              continue;
-                          }
-                          if (def.getName().contains(itemName.toLowerCase()) || def.getName().toLowerCase().startsWith(itemName)) {
-                              items[x] = "Item " + x + ": " + def.getName() + " - ID: " + def.getId() + "";
-                              idsChecked[x] = def.getId();
-                              continue;
-                          }
-                      }
-                  }
-                  for (int i = 8147; i <= 8195; i++) {
-                      player.getActionSender().sendString("", i);
-                  }
-                  for (int i = 12174; i <= 12223; i++) {
-                      player.getActionSender().sendString("", i);
-                  }
-                  player.getActionSender().sendString("@dre@Item Search - '" + itemName + "'", 8144);
-                  int startFrame = 8147;
-                  for (int i = 0; i < items.length; i++) {
-                      if (items[i] == null) {
-                          continue;
-                      }
-                      if ((i + startFrame) == 8196) {
-                          startFrame = 12174;
-                      }
-                      player.getActionSender().sendString(items[i], (startFrame + i - (startFrame == 12174 ? 49 : 0)));
-                  }
-                  int count = 0;
-                  for (int i = 0; i < items.length; i++) {
-                      if (items[i] != null) {
-                          count++;
-                      }
-                  }
-                  player.write(new SendMessagePacket("Showing " + (count - 1) + " results for prefix: '" + itemName + "'"));
-                  player.write(new SendInterfacePacket(8134));
-
-              } catch (Exception e) {
-                  e.printStackTrace();
-              }
-          
-                 return true;
     	case "pet":
 			int id = Integer.parseInt(cmd[1]);
 			Pet pet = new Pet(player, id);
@@ -616,13 +550,14 @@ public class CommandPacketHandler implements PacketType {
     		player.write(new SendConfigPacket(Integer.parseInt(cmd[1]), Integer.parseInt(cmd[2])));
     		player.write(new SendMessagePacket("Setting config: "+cmd[1]+" Type: "+cmd[2]));
     		return true;
+    		
     	case "master":
-			for (int i = 0; i < player.getSkills().SKILL_COUNT; i++) {
-				player.getSkills().setExperience(i, player.getSkills().getXPForLevel(99));
+    		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
+    			player.getSkills().setExperience(i, player.getSkills().getXPForLevel(99) + 1);
 				player.getSkills().setLevel(i, 99);
-			}
-		
-			return true;
+    		}
+    		return true;
+			
     	case "setstat":
     		try {
 				player.getSkills().setExperience(Integer.parseInt(cmd[1]), player.getSkills().getXPForLevel(Integer.parseInt(cmd[2])) + 1);
@@ -682,7 +617,7 @@ public class CommandPacketHandler implements PacketType {
 					new NPCDefinitionLoader().load();
 					break;
 				case 2:
-					for (Npc npc : World.getWorld().getNpcs()) {
+					for (NPC npc : World.getWorld().getNpcs()) {
 						if (npc != null) {
 							World.getWorld().unregister(npc);
 						}
@@ -845,7 +780,7 @@ public class CommandPacketHandler implements PacketType {
     		player.setPlayerTransformed(true);
 			player.appearanceUpdateRequired = true;
 			player.updateRequired = true;
-			player.write(new SendMessagePacket("You transform into a " + Npc.getName(value) + "."));
+			player.write(new SendMessagePacket("You transform into a " + NPC.getName(value) + "."));
     		return true;
     		
     	case "pos":
@@ -862,7 +797,7 @@ public class CommandPacketHandler implements PacketType {
     		player.setPnpc(value);
 			player.appearanceUpdateRequired = true;
 			player.updateRequired = true;
-			player.write(new SendMessagePacket("You transform into a " + Npc.getName(value) + "."));
+			player.write(new SendMessagePacket("You transform into a " + NPC.getName(value) + "."));
     		return true;
     		
     	case "sigil":
@@ -870,7 +805,7 @@ public class CommandPacketHandler implements PacketType {
     		player.setPnpc(value);
 			player.appearanceUpdateRequired = true;
 			player.updateRequired = true;
-			player.write(new SendMessagePacket("You transform into a " + Npc.getName(value) + "."));
+			player.write(new SendMessagePacket("You transform into a " + NPC.getName(value) + "."));
     		return true;
     	
     	case "idban":
@@ -894,7 +829,7 @@ public class CommandPacketHandler implements PacketType {
 			try {
 				int npcId = Integer.parseInt(cmd[1]);
 				if (npcId > 0) {
-					Npc npc = NPCHandler.spawnNpc(player, npcId, player.getX() + 1, player.getY(), player.getZ(), 0, false, false, false);
+					NPC npc = NPCHandler.spawnNpc(player, npcId, player.getX() + 1, player.getY(), player.getZ(), 0, false, false, false);
 					if (cmd.length > 2) {
 						int hp = Integer.parseInt(cmd[2]);
 						npc.currentHealth = hp;
@@ -907,7 +842,7 @@ public class CommandPacketHandler implements PacketType {
 				ignored.printStackTrace();
 			}
 			return true;
-		
+    		
     	case "anim":
     		int animation = Integer.parseInt(cmd[1]);
 			player.playAnimation(Animation.create(animation));

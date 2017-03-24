@@ -5,7 +5,7 @@ import com.model.game.character.Entity;
 import com.model.game.character.combat.combat_data.CombatAnimation;
 import com.model.game.character.combat.combat_data.CombatType;
 import com.model.game.character.combat.effect.impl.DragonfireShieldEffect;
-import com.model.game.character.npc.Npc;
+import com.model.game.character.npc.NPC;
 import com.model.game.character.player.content.BossTracker;
 import com.model.game.character.player.content.trade.Trading;
 import com.model.game.character.player.packets.out.*;
@@ -15,8 +15,6 @@ import com.model.game.location.Position;
 import com.model.utility.Utility;
 import com.model.utility.cache.map.Region;
 import com.model.utility.json.definitions.ItemDefinition;
-
-
 import org.omicron.jagex.runescape.CollisionMap;
 
 import java.text.DecimalFormat;
@@ -33,195 +31,7 @@ public class PlayerAssistant {
     public void playerWalk(int x, int y) {
         PathFinder.getPathFinder().findRoute(player, x, y, true, 1, 1);
     }
-    public int arrayItems[] = { 1115, 1153, 1067, 1704, 3105, 1129, 1191, 1323,
-			6107, 6108, 6109, 7458 };
 
-	public int arrayItemsHardcore[] = { 13110, 13319, 1115, 1153, 1067, 1704,
-			3105, 1129, 1191, 1323, 6107, 6108, 6109, 7458 };
-
-	public int arrayItemsLegend[] = { 3281, 1052, 1115, 1153, 1067, 1704, 3105,
-			1129, 1191, 1323, 6107, 6108, 6109, 7458 };
-
-    public void showAccountSleection(Player player, int state) {
-    	player.write(new SendInterfacePacket(45200));
-		int counter2 = 0;
-		for (int i = 0; i < arrayItemsLegend.length; i++) {
-			player.getActionSender().sendUpdateItem(45245 + counter2, -1, 0, 1);
-			counter2++;
-		}
-		switch (state) {
-		case 0: // Hero
-			player.getActionSender().sendChangeSprite(45228, (byte) 2);//Ironman
-			player.getActionSender().sendChangeSprite(45230, (byte) 0);//Hardcore ironman
-			player.getActionSender().sendChangeSprite(45232, (byte) 0);//Ultimate ironman
-			player.getActionSender().sendChangeSprite(45234, (byte) 0);//None option
-			
-			player.getActionSender().sendString("Selection Info: <col=ff9900>Hero </col> ",
-					45209);
-			player.getActionSender().sendString("<col=ff9900>Selection Perks: </col> ",
-					45222);
-			player.getActionSender().sendString("As a Hero you get 500 exp", 45211);
-			player.getActionSender().sendString("This is our 'easy' mode", 45212);
-			player.getActionSender().sendString("If you are looking not to grind", 45213);
-			player.getActionSender().sendString("for hours this is your", 45214);
-			player.getActionSender().sendString("optimal mode of choice.", 45216);
-			player.getActionSender().sendString("You do have certain limitations", 45217);
-			player.getActionSender().sendString("in-game, that you will  ", 45218);
-			player.getActionSender().sendString("soon find out about.", 45219);
-			player.getActionSender().sendString("", 45220);
-
-			// Perks
-			player.getActionSender().sendString("Faster Exp", 45224);
-			player.getActionSender().sendString("Normal Game mode", 45225);
-			player.getActionSender().sendString("CANNOT Prestige", 45226);
-			player.getActionSender().sendString("<col=ff9900>10x ACTIVITY GOLD", 45227);
-
-			int counter = 0;
-			for (int i = 0; i < arrayItems.length; i++) {
-				player.getActionSender().sendUpdateItem(45245 + counter, arrayItems[i], 0,
-						1);
-
-				player.getActionSender().sendUpdateItem(45245 + counter, arrayItems[i], 0,
-						1);
-				counter++;
-			}
-			break;
-
-		case 1: // legend
-			player.getActionSender().sendChangeSprite(45228, (byte) 0);//Ironman
-			player.getActionSender().sendChangeSprite(45230, (byte) 2);//Hardcore ironman
-			player.getActionSender().sendChangeSprite(45232, (byte) 0);//Ultimate ironman
-			player.getActionSender().sendChangeSprite(45234, (byte) 0);//None option
-			player.getActionSender().sendString(
-					"Selection Info: <col=ff9900>Legend </col> ", 45209);
-			player.getActionSender().sendString("<col=ff9900>Selection Perks: </col> ",
-					45222);
-			player.getActionSender().sendString("Our most popular game ", 45211);
-			player.getActionSender().sendString("mode with 50xp rates", 45212);
-			player.getActionSender().sendString("As a Legend you", 45213);
-			player.getActionSender().sendString("will have access to all server", 45214);
-			player.getActionSender().sendString(" features, plus some", 45216);
-			player.getActionSender().sendString("legend only content.", 45217);
-			player.getActionSender().sendString("optimal mode of choice.", 45218);
-			player.getActionSender().sendString("Want an exciting and rewarding", 45219);
-			player.getActionSender().sendString("experience? This is your mode", 45220);
-
-			// Perks
-			player.getActionSender().sendString("Boosted Drop Rate %", 45224);
-			player.getActionSender().sendString("Legends Only Whip", 45225);
-			player.getActionSender().sendString("<col=ff9900>20x Activity Gold", 45226);
-			player.getActionSender().sendString("Prestiging ", 45227);
-
-			int counter1 = 0;
-			for (int i = 0; i < arrayItemsLegend.length; i++) {
-				player.getActionSender().sendUpdateItem(45245 + counter1,
-						arrayItemsLegend[i], 0, 1);
-				counter1++;
-			}
-			break;
-		case 2: // Hardcore
-			player.getActionSender().sendChangeSprite(45228, (byte) 0);//Ironman
-			player.getActionSender().sendChangeSprite(45230, (byte) 0);//Hardcore ironman
-			player.getActionSender().sendChangeSprite(45232, (byte) 2);//Ultimate ironman
-			player.getActionSender().sendChangeSprite(45234, (byte) 0);//None option
-			player.getActionSender().sendString(
-					"Selection Info: <col=ff9900>Hardcore </col> ", 45209);
-			player.getActionSender().sendString("<col=ff9900>Selection Perks: </col> ",
-					45222);
-			player.getActionSender().sendString("Our most difficult game mode", 45211);
-			player.getActionSender().sendString("As a Hardcore you", 45212);
-			player.getActionSender().sendString("will have access", 45213);
-			player.getActionSender().sendString("to all server features. If you", 45214);
-			player.getActionSender().sendString("are looking for a great", 45216);
-			player.getActionSender().sendString("challenge and to live", 45217);
-			player.getActionSender().sendString("and breathe the grind", 45218);
-			player.getActionSender().sendString("This is the mode for you", 45219);
-			player.getActionSender().sendString("", 45220);
-
-			// Perks
-			player.getActionSender().sendString("Boosted Drop Rate 8%", 45224);
-			player.getActionSender().sendString("Hardcore Sword", 45225);
-			player.getActionSender().sendString("<col=ff9900>30x Activity Gold", 45226);
-			player.getActionSender().sendString("Base Bonus +8 Prayer, +5 Str", 45227);
-			int counter11 = 0;
-			for (int i = 0; i < arrayItemsHardcore.length; i++) {
-				player.getActionSender().sendUpdateItem(45245 + counter11,
-						arrayItemsHardcore[i], 0, 1);
-				counter11++;
-			}
-			break;
-		case 3: // Master
-			player.getActionSender().sendChangeSprite(45228, (byte) 0);//Ironman
-			player.getActionSender().sendChangeSprite(45230, (byte) 0);//Hardcore ironman
-			player.getActionSender().sendChangeSprite(45232, (byte) 0);//Ultimate ironman
-			player.getActionSender().sendChangeSprite(45234, (byte) 2);//None option
-			player.getActionSender().sendString(
-					"Selection Info: <col=ff9900>Master </col> ", 45209);
-			player.getActionSender().sendString("<col=ff9900>Selection Perks: </col> ",
-					45222);
-
-			player.getActionSender().sendString("Are you a pker? This is your", 45211);
-			player.getActionSender().sendString("mode. As a Master you can start", 45212);
-			player.getActionSender().sendString("off by setting your Combat stats", 45213);
-			player.getActionSender().sendString("to what you desire. This ", 45214);
-			player.getActionSender().sendString(" eliminates the 'grind' ", 45216);
-			player.getActionSender().sendString("and allows you to start ", 45217);
-			player.getActionSender().sendString("pking instantly. There are limitations  ",
-					45218);
-			player.getActionSender().sendString("to keep our gameplay fair. That", 45219);
-			player.getActionSender().sendString("are stated below.", 45220);
-
-			// Perks
-			player.getActionSender().sendString("Boosted PkP rate", 45224);
-			player.getActionSender().sendString("Extremely low drop rate %", 45225);
-			player.getActionSender().sendString("Cannot attack NPC's outside of wild", 45226);
-			player.getActionSender().sendString("etc", 45227);
-			int counter111 = 0;
-			for (int i = 0; i < arrayItems.length; i++) {
-				player.getActionSender().sendUpdateItem(45245 + counter111, arrayItems[i],
-						0, 1);
-				counter111++;
-			}
-			break;
-
-		case 4: // Iron man
-			player.getActionSender().sendString(
-					"Selection Info: <col=ff9900>Iron Man </col> ", 45209);
-			player.getActionSender().sendString("<col=ff9900>Selection Perks: </col> ",
-					45222);
-
-			player.getActionSender().sendString("Iron Man is an obvious", 45211);
-			player.getActionSender().sendString("mode. By selecting Iron", 45212);
-			player.getActionSender().sendString(
-					"man, <col=ff9900>You will need to talk to the ", 45213);
-			player.getActionSender().sendString(" <col=ff9900>Iron man instructor to ",
-					45214);
-			player.getActionSender().sendString(" <col=ff9900>complete your  ", 45216);
-			player.getActionSender().sendString(" <col=ff9900>IRON MAN ACCOUNT", 45217);
-			player.getActionSender().sendString(" ", 45218);
-			player.getActionSender().sendString("<col=ff9900>Find him west of here.", 45219);
-			player.getActionSender().sendString("", 45220);
-
-			// Perks
-			player.getActionSender().sendString("<col=ff9900>20x Activity Gold", 45224);
-			player.getActionSender().sendString("", 45225);
-			player.getActionSender().sendString("", 45226);
-			player.getActionSender().sendString("", 45227);
-			int counter1111 = 0;
-			for (int i = 0; i < arrayItems.length; i++) {
-				player.getActionSender().sendUpdateItem(45245 + counter1111, arrayItems[i],
-						0, 1);
-				counter1111++;
-			}
-			break;
-
-		}
-
-		// player.getPA().sendFrame34a(45245,14484, 0, 1);
-
-	}
-    
-    
     public void movePlayer1(int x, int y) {
         player.getMovementHandler().reset();
         player.teleportToX = x;
@@ -361,8 +171,8 @@ public class PlayerAssistant {
          * Out of combat following, possibly a bug or 2?
          */
         if (!forCombat) {
-            int fx = following.lastX;
-            int fy = following.lastY;
+            int fx = following.lastTile.getX();
+            int fy = following.lastTile.getY();
 
             int delay = (player.getMovementHandler().isMoving() || ((Player)following).getMovementHandler().isMoving()) ? 1
                 : (player.walkTutorial + 1 >= Integer.MAX_VALUE ? player.walkTutorial = 0 : player.walkTutorial++);
@@ -456,7 +266,7 @@ public class PlayerAssistant {
 			return;
 		}
 
-        Npc npc = (Npc) targ;
+        NPC npc = (NPC) targ;
 
         boolean inside = false;
         for (Position tile : npc.getTiles()) {
@@ -587,7 +397,7 @@ public class PlayerAssistant {
                 if (player.getCombat().target.isPlayer())
                     dfsEffect.execute(player, (Player)player.getCombat().target, damage);
                 else
-                    dfsEffect.execute(player, (Npc)player.getCombat().target, damage);
+                    dfsEffect.execute(player, (NPC)player.getCombat().target, damage);
                 player.setLastDragonfireShieldAttack(System.currentTimeMillis());
 			}
 			break;
