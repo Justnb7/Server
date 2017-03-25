@@ -6,7 +6,6 @@ import com.model.game.character.Entity;
 import com.model.game.character.Hit;
 import com.model.game.character.combat.CombatDamage;
 import com.model.game.character.combat.nvp.NpcVsPlayerCombat;
-import com.model.game.character.npc.combat.combat_scripts.Scorpia;
 import com.model.game.character.player.ActionSender;
 import com.model.game.character.player.Boundary;
 import com.model.game.character.player.Player;
@@ -22,7 +21,7 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
-public class Npc extends Entity {
+public class NPC extends Entity {
 
 	/**
 	 * Adds the damage received into a list
@@ -134,17 +133,8 @@ public class Npc extends Entity {
 	 * npc Locations
 	 */
 	public int makeX, makeY, moveX, moveY;
-
-	/**
-	 * representing the npc index
-	 */
-	public int npcIndex;
 	
-	//fml called to many times lmao cant we just replace all with owner? 
-	// nah cos they might be used in diff situations, its fine tho everything will work
-	// lets remove the debugs and commit
-	
-	public int combatLevel, attackStyle, projectileId, endGfx, spawnedBy, hitDelayTimer, currentHealth, maximumHealth,
+	public int combatLevel, projectileId, spawnedBy, currentHealth, maximumHealth,
 			attackTimer, killedBy, oldIndex, underAttackBy, walking_type;
 	
 	/**
@@ -190,11 +180,11 @@ public class Npc extends Entity {
 	 */
 	public int range_defence;
 	
-	public Npc(int _npcType) {
+	public NPC(int _npcType) {
 		this(_npcType, null, -1);
 	}
 	
-	public Npc(int id, Position spawn, int dir) {
+	public NPC(int id, Position spawn, int dir) {
 		super(EntityType.NPC);
 		direction = dir;
 		if (spawn != null)
@@ -446,7 +436,7 @@ public class Npc extends Entity {
 	 *            the mob
 	 * @return the list of players surrounding the mob
 	 */
-	public static final List<Player> getSurroundingPlayers(final Npc mob, int distance) {
+	public static final List<Player> getSurroundingPlayers(final NPC mob, int distance) {
 		final List<Player> surrounding = new ArrayList<>();
 		for (Player player : World.getWorld().getPlayers()) {
 			if (player != null) {
@@ -510,8 +500,8 @@ public class Npc extends Entity {
 				}
 				else if (npcId == 6615) {
 					if (currentHealth <= 100 && !spawnedScorpiaMinions) {
-						Npc min1 = NPCHandler.spawnNpc(spawnedByPlr, 6617, getX()- 1, absY, heightLevel, 1, true, false, true);
-						Npc min2 = NPCHandler.spawnNpc(spawnedByPlr, 6617, getX() + 1, absY, heightLevel, 1, true, false, true);
+						NPC min1 = NPCHandler.spawnNpc(spawnedByPlr, 6617, getX()- 1, absY, heightLevel, 1, true, false, true);
+						NPC min2 = NPCHandler.spawnNpc(spawnedByPlr, 6617, getX() + 1, absY, heightLevel, 1, true, false, true);
 						// attributes not used atm
 						this.setAttribute("min1", min1);
 						min1.setAttribute("boss", this);
@@ -520,8 +510,8 @@ public class Npc extends Entity {
 						// flag spawned
 						spawnedScorpiaMinions = true;
 						// start task
-						Scorpia.heal_scorpia(this, min1);
-						Scorpia.heal_scorpia(this, min2);
+						//Scorpia.heal_scorpia(this, min1);
+						//Scorpia.heal_scorpia(this, min2);
 					}
 				}
 			}
@@ -632,7 +622,7 @@ public class Npc extends Entity {
 	
 	public int walkX, walkY;
 
-	public void getNextNPCMovement(Npc npc) {
+	public void getNextNPCMovement(NPC npc) {
 		if (direction != -1) {
 			return;
 		}
@@ -654,7 +644,7 @@ public class Npc extends Entity {
 		return distanceTo(player.absX, player.absY);
 	}
 
-	public int distanceTo(Npc npc) {
+	public int distanceTo(NPC npc) {
 		return distanceTo(npc.absX, npc.absY);
 	}
 
@@ -764,6 +754,16 @@ public class Npc extends Entity {
 	@Override
 	public int getWidth() {
 		return getDefinition().getSize();
+	}
+	
+	@Override
+	public Position getCentreLocation() {
+		return Position.create(getPosition().getX() + getWidth() / 2, getPosition().getY() + getHeight() / 2, getPosition().getZ());
+	}
+	
+	@Override
+	public int getProjectileLockonIndex() {
+		return getIndex() + 1;
 	}
 
 	@Override
