@@ -16,11 +16,13 @@ import com.model.game.character.npc.NPC;
 import com.model.game.character.player.Player;
 import com.model.game.character.player.PlayerUpdating;
 import com.model.game.character.player.Skills;
+import com.model.game.character.player.content.Feed;
 import com.model.game.character.player.skill.prayer.Prayer.Bone;
 import com.model.game.item.GameItem;
 import com.model.game.item.Item;
 import com.model.game.item.ground.GroundItem;
 import com.model.game.item.ground.GroundItemHandler;
+import com.model.utility.Utility;
 import com.model.utility.json.definitions.ItemDefinition;
 import com.google.common.reflect.TypeToken;
 
@@ -222,6 +224,8 @@ public class NpcDropSystem {
 						dropAnnouncement.announce(player, item.getId(), item.getAmount());
 						GroundItemHandler.createGroundItem(new GroundItem(new Item(item.getId(), item.getAmount()), location.getX(), location.getY(), location.getH(), player));
 						ItemDefinition itemDef = ItemDefinition.forId(item.getId());
+						 Feed.submit("@whi@[@gre@"+Utility.getDate()+"@whi@] @or1@"+ItemDefinition.forId(item.getId()).getName()+"  @yel@"+npc.getName()+"@whi@");
+							
 						if (itemDef.getGeneralPrice() > 10000000) {
 							PlayerUpdating.executeGlobalMessage("@red@[News]@blu@" + player.getName() + "@bla@ just got a @red@" + ItemDefinition.forId(item.getId()).getName() + " @bla@drop.");
 						}

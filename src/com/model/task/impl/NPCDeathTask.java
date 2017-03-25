@@ -9,10 +9,12 @@ import com.model.game.character.npc.GroupRespawn;
 import com.model.game.character.npc.NPC;
 import com.model.game.character.npc.NPCHandler;
 import com.model.game.character.player.Player;
+import com.model.game.character.player.content.Feed;
 import com.model.game.character.player.content.music.sounds.MobAttackSounds;
 import com.model.game.character.player.minigames.fight_caves.FightCaves;
 import com.model.game.character.player.skill.slayer.SlayerTaskManagement;
 import com.model.task.ScheduledTask;
+import com.model.utility.Utility;
 
 /**
  * Handles respawning an {@link NPC} which has just died
@@ -38,6 +40,7 @@ public class NPCDeathTask extends ScheduledTask {
         super(1, true);
         attach(npc);
         npc.isDead = true;
+       	
     }
 
     @Override
@@ -48,6 +51,7 @@ public class NPCDeathTask extends ScheduledTask {
             stop();
             return;
         }
+       
         if (counter == 0) {
             initialDeath(npc);
             
@@ -69,7 +73,7 @@ public class NPCDeathTask extends ScheduledTask {
             	}
 			}
             if (killer != null || isUnspawnableNpc(npc) || !npc.shouldRespawn) {
-				handleUnspawnableNpc(npc);
+            	handleUnspawnableNpc(npc);
 				removeMobFromWorld(killer, npc);
 				stop();
 				return;

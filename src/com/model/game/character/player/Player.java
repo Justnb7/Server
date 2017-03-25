@@ -38,6 +38,7 @@ import com.model.game.character.npc.SlayerDeathTracker;
 import com.model.game.character.npc.pet.Pet;
 import com.model.game.character.player.account.Account;
 import com.model.game.character.player.account.ironman.GameModeSelection;
+import com.model.game.character.player.content.Feed;
 import com.model.game.character.player.content.FriendAndIgnoreList;
 import com.model.game.character.player.content.achievements.AchievementHandler;
 import com.model.game.character.player.content.clan.ClanMember;
@@ -1374,6 +1375,8 @@ public class Player extends Entity {
 		Utility.println("[REGISTERED]: " + this + "");
 		//activate login delay
 		setAttribute("login_delay", System.currentTimeMillis());
+		//update feed
+		Feed.sendEntries(this);
 		
 		//We can goahead and finish of the players login
 		submitAfterLogin();
@@ -1395,7 +1398,6 @@ public class Player extends Entity {
 
 	private void submitAfterLogin() {
 		Server.getTaskScheduler().schedule(new ScheduledTask(3) {
-
 			@Override
 			public void execute() {
 				Player player = (Player) getAttachment();
@@ -1423,12 +1425,12 @@ public class Player extends Entity {
 		            World.getWorld().register(pet);
 		        }
 
-				if (player.getName().equalsIgnoreCase("Patrick")) {
+				if (player.getName().equalsIgnoreCase("Justin")) {
 					player.setDebugMode(true);
 				}
 				if (tempKey == null || tempKey.equals("") || tempKey.isEmpty()) {
 					player.write(new SendMessagePacket("<col=ff0033>We noticed you aren't in a clanchat, so we added you to the community clanchat!"));
-					tempKey = "patrick";
+					tempKey = "Justin";
 				}
 				if (tempKey != null) {
 					com.model.game.character.player.content.clan.ClanManager.joinClan(player, player.tempKey);
