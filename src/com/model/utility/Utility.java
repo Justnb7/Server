@@ -828,7 +828,7 @@ public class Utility {
 	 * @return
 	 */
 	public static String getDate() {
-		return new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
+		return new SimpleDateFormat("MM/dd").format(Calendar.getInstance().getTime());
 	}
 
 	/**
